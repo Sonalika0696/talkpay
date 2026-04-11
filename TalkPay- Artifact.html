@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TalkPay — Investor Artifact Document</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#040E27;--navy2:#08183C;--card:#0C224A;--card2:#102B5C;
+  --blue:#1A56DB;--bluel:#2D70F7;--teal:#0AA178;--teall:#12C49A;
+  --gold:#F5A623;--white:#fff;--gray:#7C93BB;--text:#C8D8F0;
+  --purple:#7C3AED;--red:#FF4D4D;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--navy);color:var(--white);min-height:100vh;}
+.doc{max-width:960px;margin:0 auto;padding:2rem 1.5rem;}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(45,112,247,0.2);}
+.tab{padding:7px 18px;border-radius:20px;font-size:12px;border:1px solid rgba(45,112,247,0.3);background:transparent;color:var(--gray);cursor:pointer;transition:all .18s;}
+.tab.active{background:var(--bluel);color:#fff;border-color:var(--bluel);}
+.tab:hover:not(.active){background:rgba(45,112,247,0.1);color:var(--white);}
+.section{display:none;}.section.active{display:block;}
+
+.doc-header{background:var(--card);border-radius:12px;padding:1.5rem 2rem;margin-bottom:1.5rem;border-left:4px solid var(--teall);}
+.doc-header h1{font-size:22px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.doc-header .sub{font-size:12px;color:var(--gray);line-height:1.6;}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.badge{padding:4px 12px;border-radius:12px;font-size:11px;font-weight:500;}
+.b-blue{background:rgba(45,112,247,0.15);color:var(--bluel);border:1px solid rgba(45,112,247,0.3);}
+.b-teal{background:rgba(18,196,154,0.12);color:var(--teall);border:1px solid rgba(18,196,154,0.25);}
+.b-gold{background:rgba(245,166,35,0.12);color:var(--gold);border:1px solid rgba(245,166,35,0.25);}
+
+.card{background:var(--card);border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1rem;}
+.card.tl{border-top:2px solid var(--teall);}
+.card.bl{border-top:2px solid var(--bluel);}
+.card.gl{border-top:2px solid var(--gold);}
+.card.pl{border-top:2px solid var(--purple);}
+.card h3{font-size:14px;font-weight:600;color:var(--white);margin-bottom:10px;}
+.card h4{font-size:12px;font-weight:600;color:var(--teall);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;}
+.card p{font-size:12px;color:var(--gray);line-height:1.65;}
+
+.screen-wrap{background:var(--navy2);border-radius:12px;padding:1.2rem;border:1px solid rgba(45,112,247,0.2);margin-bottom:1rem;}
+.screen-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.screen-title{font-size:11px;font-weight:600;color:var(--teall);text-transform:uppercase;letter-spacing:1px;}
+.screen-url{font-size:10px;color:var(--bluel);}
+.mock-frame{background:var(--card2);border-radius:8px;padding:12px;border:1px solid rgba(45,112,247,0.15);}
+.mock-nav{display:flex;align-items:center;justify-content:space-between;background:rgba(5,16,40,0.8);padding:6px 10px;border-radius:6px;margin-bottom:10px;}
+.mock-brand{font-size:11px;font-weight:700;color:var(--bluel);}
+.mock-btn{background:var(--bluel);color:#fff;font-size:9px;padding:3px 8px;border-radius:4px;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+@media(max-width:640px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+
+.flow-row{display:flex;align-items:flex-start;gap:0;margin:12px 0;}
+.fl-step{flex:1;text-align:center;position:relative;}
+.fl-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin:0 auto 6px;color:#fff;}
+.fc-blue{background:var(--bluel);}.fc-teal{background:var(--teal);}
+.fl-title{font-size:10px;font-weight:600;color:var(--white);}
+.fl-sub{font-size:9px;color:var(--gray);margin-top:2px;}
+.fl-arr{position:absolute;right:-6px;top:10px;font-size:12px;color:var(--bluel);}
+
+.layer{background:var(--card);border-radius:8px;padding:10px 14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;}
+.layer-bar{width:4px;border-radius:2px;min-height:50px;flex-shrink:0;}
+.layer-title{font-size:11px;font-weight:600;margin-bottom:4px;}
+.layer-tech{font-size:10px;color:var(--gray);line-height:1.5;}
+
+.mc{background:var(--card2);border-radius:8px;padding:12px 10px;text-align:center;}
+.mc .mv{font-size:22px;font-weight:700;color:var(--teall);}
+.mc .ml{font-size:9px;color:var(--gray);margin-top:4px;}
+.mc.blue .mv{color:var(--bluel);}
+.mc.gold .mv{color:var(--gold);}
+
+.tbl{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px;}
+.tbl th{background:var(--bluel);color:#fff;padding:7px 10px;text-align:left;font-weight:600;}
+.tbl td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--text);}
+.tbl td:first-child{color:var(--gray);}
+.tbl tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+.ck{color:var(--teall);font-weight:600;}.xk{color:var(--red);}
+
+.pill{display:inline-block;padding:3px 10px;border-radius:10px;font-size:10px;margin:2px;}
+.p-built{background:rgba(18,196,154,0.12);color:var(--teall);border:1px solid rgba(18,196,154,0.25);}
+.p-partial{background:rgba(245,166,35,0.1);color:var(--gold);border:1px solid rgba(245,166,35,0.2);}
+.p-planned{background:rgba(124,147,187,0.1);color:var(--gray);border:1px solid rgba(124,147,187,0.2);}
+
+.chat-wrap{background:var(--card2);border-radius:8px;padding:12px;}
+.msg-r{background:var(--bluel);border-radius:10px 10px 3px 10px;padding:6px 10px;font-size:10px;color:#fff;max-width:72%;margin-left:auto;margin-bottom:6px;}
+.msg-l{background:rgba(255,255,255,0.06);border-radius:10px 10px 10px 3px;padding:6px 10px;font-size:10px;color:var(--text);max-width:80%;margin-bottom:6px;}
+.msg-s{background:rgba(10,161,120,0.15);border:1px solid rgba(10,161,120,0.3);border-radius:8px;padding:8px 10px;font-size:10px;color:var(--teall);margin-top:4px;}
+
+.code-block{background:#020915;border:1px solid rgba(45,112,247,0.2);border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:10.5px;line-height:1.7;color:#a8c4f0;overflow-x:auto;margin:8px 0;}
+.c-kw{color:#7C3AED;}.c-fn{color:var(--teall);}.c-str{color:var(--gold);}
+.c-cm{color:rgba(124,147,187,0.7);font-style:italic;}.c-ty{color:var(--bluel);}
+
+.divider{height:1px;background:rgba(45,112,247,0.18);margin:1.2rem 0;}
+.section-tag{font-size:9px;letter-spacing:2px;color:var(--teall);text-transform:uppercase;margin-bottom:8px;font-weight:600;}
+.h2{font-size:16px;font-weight:600;color:var(--white);margin-bottom:14px;}
+</style>
+</head>
+<body>
+<div class="doc">
+
+<div class="doc-header">
+  <h1>TalkPay — Investor Artifact Document</h1>
+  <div class="sub">Voice-first AI financial assistant · Product breakdown · System architecture · Technical mapping<br>Submitted: April 2026 · Middlesex University Dubai · MSc FinTech</div>
+  <div class="badge-row">
+    <span class="badge b-teal">🔗 talkpay.lovable.app</span>
+    <span class="badge b-blue">⚡ React + TypeScript + Vite</span>
+    <span class="badge b-blue">🐱 github.com/Sonalika0696/talkpay</span>
+    <span class="badge b-gold">📅 April 2026</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('screens',this)">Product Screens</button>
+  <button class="tab" onclick="show('userflow',this)">User Flow</button>
+  <button class="tab" onclick="show('architecture',this)">Architecture</button>
+  <button class="tab" onclick="show('technical',this)">Technical Mapping</button>
+  <button class="tab" onclick="show('financials',this)">Financials</button>
+  <button class="tab" onclick="show('txhistory',this)">💳 Tx History</button>
+  <button class="tab" onclick="show('voicehistory',this)">🎙 Voice History</button>
+  <button class="tab" onclick="show('calendar',this)">📅 Calendar</button>
+  <button class="tab" onclick="show('advice',this)">🧠 AI Advice</button>
+  <button class="tab" onclick="show('reminders',this)">🔔 Reminders</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1: PRODUCT SCREENS
+══════════════════════════════════════════ -->
+<div class="section active" id="section-screens">
+  <div class="section-tag">01 — Product Screenshots</div>
+  <div class="h2">Live Prototype — talkpay.lovable.app</div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen 1 — Landing Page / Hero</span>
+      <span class="screen-url">talkpay.lovable.app/</span>
+    </div>
+    <div class="mock-frame">
+      <div class="mock-nav">
+        <span class="mock-brand">TalkPay</span>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span style="font-size:9px;color:var(--gray);">Features</span>
+          <span style="font-size:9px;color:var(--gray);">How It Works</span>
+          <span class="mock-btn">Get Started</span>
+        </div>
+      </div>
+      <div style="text-align:center;padding:16px 0 10px;">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--teall);margin-bottom:6px;">AI-POWERED PAYMENT ASSISTANT</div>
+        <div style="font-size:20px;font-weight:700;color:var(--white);line-height:1.2;">Pay Anyone, Anywhere</div>
+        <div style="font-size:20px;font-weight:700;color:var(--bluel);">Just Say It.</div>
+        <div style="font-size:10px;color:var(--gray);margin:8px auto;max-width:280px;line-height:1.5;">Voice-first AI financial assistant — remove friction between people and money.</div>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:10px;">
+          <div style="background:var(--bluel);color:#fff;padding:6px 14px;border-radius:6px;font-size:10px;">Start Your Journey →</div>
+          <div style="border:1px solid rgba(45,112,247,0.4);color:var(--gray);padding:6px 14px;border-radius:6px;font-size:10px;">Explore Features</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(13,31,62,0.8);margin-top:8px;border-radius:6px;overflow:hidden;">
+        <div style="background:var(--card2);padding:8px 4px;text-align:center;"><div style="font-size:11px;font-weight:600;color:#fff;">P2P</div><div style="font-size:8px;color:var(--gray);">Direct Transfers</div></div>
+        <div style="background:var(--card2);padding:8px 4px;text-align:center;"><div style="font-size:11px;font-weight:600;color:#fff;">Voice</div><div style="font-size:8px;color:var(--gray);">Driven Commands</div></div>
+        <div style="background:var(--card2);padding:8px 4px;text-align:center;"><div style="font-size:11px;font-weight:600;color:#fff;">256-bit</div><div style="font-size:8px;color:var(--gray);">Encryption</div></div>
+        <div style="background:var(--card2);padding:8px 4px;text-align:center;"><div style="font-size:11px;font-weight:600;color:var(--teall);">&lt;2s</div><div style="font-size:8px;color:var(--gray);">Transaction Time</div></div>
+      </div>
+    </div>
+    <div class="g3" style="margin-top:10px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">User Flow Step</div><div style="font-size:10px;color:var(--gray);">Step 0 — Entry point. User lands and understands value proposition before sign-up.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">Backend Processing</div><div style="font-size:10px;color:var(--gray);">Static HTML/React served from Vercel CDN. No API calls at this stage.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">Key Components</div><div style="font-size:10px;color:var(--gray);">React Router, Tailwind hero section, feature cards, CTA routing.</div></div>
+    </div>
+  </div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen 2 — Voice Payment Interface</span>
+      <span class="screen-url">talkpay.lovable.app/pay</span>
+    </div>
+    <div class="mock-frame">
+      <div class="mock-nav"><span class="mock-brand">TalkPay</span><span style="font-size:9px;color:var(--teall);">🎙 Voice Mode Active</span></div>
+      <div style="padding:10px;">
+        <div style="text-align:center;margin-bottom:12px;">
+          <div style="width:54px;height:54px;border-radius:50%;background:var(--bluel);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:20px;">🎙</div>
+          <div style="font-size:12px;font-weight:600;color:var(--white);">Listening...</div>
+          <div style="font-size:10px;color:var(--gray);margin-top:3px;">Say a payment command naturally</div>
+        </div>
+        <div class="chat-wrap">
+          <div class="msg-r">Send 200 AED to Sara</div>
+          <div class="msg-l">🤖 Found Sara Al-Hassan (sara@example.com). Confirm: Send <strong>AED 200.00</strong>?</div>
+          <div class="msg-r">Yes, confirm</div>
+          <div class="msg-l">🔒 Enter your PIN to authenticate</div>
+          <div class="msg-r">●●●●</div>
+          <div class="msg-l">📱 OTP sent to your email. Enter the code.</div>
+          <div class="msg-r">000999</div>
+          <div class="msg-s"><strong>✓ AED 200.00 sent to Sara Al-Hassan</strong><br><span style="font-size:9px;color:rgba(18,196,154,0.7);">TXN-3901 · 1.7s · Audited · Balance: AED 800.00</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="g3" style="margin-top:10px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">User Flow Steps 1–8</div><div style="font-size:10px;color:var(--gray);">Voice capture → STT → intent extraction → confirmation → PIN → OTP → execution → confirmation.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">Backend Processing</div><div style="font-size:10px;color:var(--gray);">POST /agent/message → LLM → POST /receivers/verify → POST /auth/challenge → POST /payments/transfer</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">State Machine</div><div style="font-size:10px;color:var(--gray);">idle → pending_confirm → authenticating → executing → idle</div></div>
+    </div>
+  </div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen 3 — Signup / Onboarding Flow</span>
+      <span class="screen-url">talkpay.lovable.app/signup</span>
+    </div>
+    <div class="mock-frame">
+      <div class="mock-nav"><span class="mock-brand">TalkPay</span><span style="font-size:10px;color:var(--teall);">Create Your Account</span></div>
+      <div style="display:flex;justify-content:center;gap:0;padding:10px 0 6px;">
+        <div style="text-align:center;"><div style="width:22px;height:22px;border-radius:50%;background:var(--bluel);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin:0 auto;">1</div><div style="font-size:7px;color:var(--gray);margin-top:2px;">Details</div></div>
+        <div style="width:16px;height:1px;background:rgba(45,112,247,0.3);margin:10px 0;"></div>
+        <div style="text-align:center;"><div style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(45,112,247,0.3);color:var(--gray);display:flex;align-items:center;justify-content:center;font-size:9px;margin:0 auto;">2</div><div style="font-size:7px;color:var(--gray);margin-top:2px;">PIN</div></div>
+        <div style="width:16px;height:1px;background:rgba(45,112,247,0.3);margin:10px 0;"></div>
+        <div style="text-align:center;"><div style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(45,112,247,0.3);color:var(--gray);display:flex;align-items:center;justify-content:center;font-size:9px;margin:0 auto;">3</div><div style="font-size:7px;color:var(--gray);margin-top:2px;">OTP</div></div>
+        <div style="width:16px;height:1px;background:rgba(45,112,247,0.3);margin:10px 0;"></div>
+        <div style="text-align:center;"><div style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(45,112,247,0.3);color:var(--gray);display:flex;align-items:center;justify-content:center;font-size:9px;margin:0 auto;">4</div><div style="font-size:7px;color:var(--gray);margin-top:2px;">Account</div></div>
+        <div style="width:16px;height:1px;background:rgba(45,112,247,0.3);margin:10px 0;"></div>
+        <div style="text-align:center;"><div style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(45,112,247,0.3);color:var(--gray);display:flex;align-items:center;justify-content:center;font-size:9px;margin:0 auto;">5</div><div style="font-size:7px;color:var(--gray);margin-top:2px;">Done</div></div>
+      </div>
+      <div style="padding:8px 12px;">
+        <div style="font-size:12px;font-weight:600;color:var(--white);margin-bottom:10px;">Step 1: General Details</div>
+        <div style="display:grid;gap:6px;">
+          <div style="background:rgba(16,43,92,0.6);border:1px solid rgba(45,112,247,0.2);border-radius:5px;padding:7px 10px;font-size:10px;color:var(--gray);">Full name</div>
+          <div style="background:rgba(16,43,92,0.6);border:1px solid rgba(45,112,247,0.2);border-radius:5px;padding:7px 10px;font-size:10px;color:var(--gray);">Email address</div>
+          <div style="background:rgba(16,43,92,0.6);border:1px solid rgba(45,112,247,0.2);border-radius:5px;padding:7px 10px;font-size:10px;color:var(--gray);">Password</div>
+          <div style="background:rgba(16,43,92,0.6);border:1px solid rgba(45,112,247,0.2);border-radius:5px;padding:7px 10px;font-size:10px;color:var(--gray);">Phone (E.164 preferred)</div>
+        </div>
+        <div style="background:var(--bluel);color:#fff;border-radius:6px;padding:8px;text-align:center;font-size:11px;font-weight:500;margin-top:10px;">Create Account →</div>
+      </div>
+    </div>
+    <div class="g3" style="margin-top:10px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">User Flow Step 0-A</div><div style="font-size:10px;color:var(--gray);">New user registers. 5-step wizard guides through details, PIN, OTP, bank linking, completion.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">API: POST /users/provision</div><div style="font-size:10px;color:var(--gray);">User row created in PostgreSQL. Default balance set. bcrypt PIN hashed, never stored plain.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">Security Note</div><div style="font-size:10px;color:var(--gray);">OTP = 000999 (demo). Production: random TOTP via email/SMS. Session JWT issued post-auth.</div></div>
+    </div>
+  </div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen 4 — Security Layer Dashboard</span>
+      <span class="screen-url">talkpay.lovable.app/security</span>
+    </div>
+    <div class="mock-frame">
+      <div style="padding:12px;">
+        <div style="text-align:center;margin-bottom:12px;"><div style="font-size:9px;letter-spacing:2px;color:var(--teall);">MULTI-LAYER SECURITY</div><div style="font-size:15px;font-weight:700;color:var(--white);">Every transaction is protected.</div></div>
+        <div style="display:flex;align-items:flex-start;gap:4px;margin-bottom:10px;">
+          <div style="flex:1;text-align:center;"><div style="background:var(--card);border-radius:6px;padding:8px 4px;"><div style="font-size:12px;margin-bottom:4px;">👤</div><div style="font-size:8px;font-weight:600;color:var(--white);">Beneficiary Check</div><div style="font-size:7px;color:var(--gray);">Email lookup</div></div></div>
+          <div style="color:var(--bluel);padding-top:18px;font-size:10px;">▶</div>
+          <div style="flex:1;text-align:center;"><div style="background:var(--card);border-radius:6px;padding:8px 4px;"><div style="font-size:12px;margin-bottom:4px;">🔒</div><div style="font-size:8px;font-weight:600;color:var(--white);">PIN Auth</div><div style="font-size:7px;color:var(--gray);">4-8 digit bcrypt</div></div></div>
+          <div style="color:var(--bluel);padding-top:18px;font-size:10px;">▶</div>
+          <div style="flex:1;text-align:center;"><div style="background:var(--card);border-radius:6px;padding:8px 4px;"><div style="font-size:12px;margin-bottom:4px;">📱</div><div style="font-size:8px;font-weight:600;color:var(--white);">OTP Challenge</div><div style="font-size:7px;color:var(--gray);">Demo: 000999</div></div></div>
+          <div style="color:var(--bluel);padding-top:18px;font-size:10px;">▶</div>
+          <div style="flex:1;text-align:center;"><div style="background:var(--card);border-radius:6px;padding:8px 4px;"><div style="font-size:12px;margin-bottom:4px;">⚡</div><div style="font-size:8px;font-weight:600;color:var(--white);">Risk Engine</div><div style="font-size:7px;color:var(--gray);">Rule-based</div></div></div>
+          <div style="color:var(--bluel);padding-top:18px;font-size:10px;">▶</div>
+          <div style="flex:1;text-align:center;"><div style="background:var(--card);border-radius:6px;padding:8px 4px;border:1px solid rgba(18,196,154,0.3);"><div style="font-size:12px;margin-bottom:4px;">✓</div><div style="font-size:8px;font-weight:600;color:var(--teall);">Executed</div><div style="font-size:7px;color:var(--gray);">&lt;2s P2P</div></div></div>
+        </div>
+        <div style="background:rgba(10,161,120,0.1);border-left:2px solid var(--teal);border-radius:5px;padding:7px 10px;font-size:9px;color:var(--teall);">⚠ Demo OTP Note — For prototype testing the OTP is always <strong>000999</strong></div>
+      </div>
+    </div>
+    <div class="g3" style="margin-top:10px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">User Flow Steps 4–7</div><div style="font-size:10px;color:var(--gray);">Triggered after confirmation. Auth gates before payment execution.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">APIs Called</div><div style="font-size:10px;color:var(--gray);">POST /auth/challenge/start → POST /auth/challenge/verify → POST /payments/validate</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">Idempotency</div><div style="font-size:10px;color:var(--gray);">MD5(session+amount+receiver) → UUID key prevents duplicate execution.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2: USER FLOW
+══════════════════════════════════════════ -->
+<div class="section" id="section-userflow">
+  <div class="section-tag">02 — User Flow</div>
+  <div class="h2">End-to-End Payment Journey</div>
+
+  <div class="card tl">
+    <h4>4-Step Visual Flow</h4>
+    <div class="flow-row">
+      <div class="fl-step"><div class="fl-circle fc-blue">🎙</div><div class="fl-title">01 SPEAK</div><div class="fl-sub">Voice or text command</div><span class="fl-arr">→</span></div>
+      <div class="fl-step"><div class="fl-circle fc-blue">🧠</div><div class="fl-title">02 AI EXTRACTS</div><div class="fl-sub">LLM parses intent + slots</div><span class="fl-arr">→</span></div>
+      <div class="fl-step"><div class="fl-circle fc-teal">🔒</div><div class="fl-title">03 VERIFY</div><div class="fl-sub">PIN + OTP + risk check</div><span class="fl-arr">→</span></div>
+      <div class="fl-step"><div class="fl-circle fc-teal">✓</div><div class="fl-title">04 PAID</div><div class="fl-sub">P2P transfer &lt;2s</div></div>
+    </div>
+  </div>
+
+  <div class="card bl">
+    <h4>Detailed Step Table</h4>
+    <table class="tbl">
+      <thead><tr><th>#</th><th>Actor</th><th>Action</th><th>API Endpoint</th><th>Backend Detail</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>User</td><td>Speaks: "Send 200 AED to Sara"</td><td>Web Speech API</td><td>Browser STT captures audio stream</td></tr>
+        <tr><td>2</td><td>System</td><td>Audio → text transcript</td><td>Whisper STT API</td><td>Groq Whisper large-v3 or Browser API</td></tr>
+        <tr><td>3</td><td>System</td><td>LLM extracts intent + amount + recipient</td><td>POST /agent/message</td><td>pydantic-ai LLM agent; slot extraction</td></tr>
+        <tr><td>4</td><td>System</td><td>Beneficiary lookup by name/email</td><td>POST /receivers/verify</td><td>Query registered users; must be active</td></tr>
+        <tr><td>5</td><td>Agent</td><td>Speaks: "Confirm: AED 200 to Sara?"</td><td>Response text → TTS</td><td>Orchestrator state: pending_confirm</td></tr>
+        <tr><td>6</td><td>User</td><td>Says "Yes"</td><td>POST /agent/confirm</td><td>is_affirmative() check; state advances</td></tr>
+        <tr><td>7</td><td>User</td><td>Types PIN (never spoken)</td><td>POST /auth/challenge/start</td><td>bcrypt compare; PIN validated server-side</td></tr>
+        <tr><td>8</td><td>User</td><td>Enters OTP (000999 demo)</td><td>POST /auth/challenge/verify</td><td>Single-use; replay blocked; marked consumed</td></tr>
+        <tr><td>9</td><td>System</td><td>Risk engine scores transaction</td><td>POST /payments/validate</td><td>Rule-based: amount + velocity + user profile</td></tr>
+        <tr><td>10</td><td>System</td><td>Idempotency key generated</td><td>shared_lib/idempotency.py</td><td>MD5(session+amount+receiver) → UUID</td></tr>
+        <tr><td>11</td><td>System</td><td>P2P debit/credit executed</td><td>POST /payments/transfer</td><td>SQLAlchemy tx: atomic debit+credit</td></tr>
+        <tr><td>12</td><td>System</td><td>Audit log written</td><td>GET /payments/{tx_id}</td><td>PostgreSQL INSERT; immutable append-only row</td></tr>
+        <tr><td>13</td><td>Agent</td><td>TTS: "Payment completed. Balance: AED 800."</td><td>Voice response</td><td>Deepgram TTS primary; Groq TTS fallback</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="g2">
+    <div class="card tl">
+      <h4>Onboarding Sub-Flow (Steps A1–A5)</h4>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:var(--bluel);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;margin-top:1px;">1</div><div style="font-size:10px;color:var(--text);">General Details → POST /users/provision → User created with 500 AED default balance</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:var(--bluel);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;margin-top:1px;">2</div><div style="font-size:10px;color:var(--text);">Set PIN → bcrypt hash stored; never plaintext</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:var(--teal);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;margin-top:1px;">3</div><div style="font-size:10px;color:var(--text);">OTP Device Setup → POST /auth/challenge/start + verify (Demo: 000999)</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:var(--teal);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;margin-top:1px;">4</div><div style="font-size:10px;color:var(--text);">Link Bank Account → BankAccount model stored (dummy in prototype)</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:var(--gold);color:var(--navy);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;margin-top:1px;">5</div><div style="font-size:10px;color:var(--text);">Completion → GET /users/by-supabase/{uid} → verified account confirmed</div></div>
+      </div>
+    </div>
+    <div class="card gl">
+      <h4>Orchestrator State Machine</h4>
+      <div style="display:grid;gap:6px;margin-top:4px;">
+        <div style="background:var(--card2);border-radius:6px;padding:8px 10px;text-align:center;border:1px solid rgba(45,112,247,0.2);"><div style="font-size:11px;font-weight:600;color:var(--bluel);">IDLE</div><div style="font-size:9px;color:var(--gray);">Awaiting first voice input</div></div>
+        <div style="text-align:center;color:var(--bluel);font-size:12px;">↓</div>
+        <div style="background:var(--card2);border-radius:6px;padding:8px 10px;text-align:center;border:1px solid rgba(18,196,154,0.2);"><div style="font-size:11px;font-weight:600;color:var(--teall);">PENDING CONFIRM</div><div style="font-size:9px;color:var(--gray);">Awaiting user "yes/no"</div></div>
+        <div style="text-align:center;color:var(--bluel);font-size:12px;">↓</div>
+        <div style="background:var(--card2);border-radius:6px;padding:8px 10px;text-align:center;border:1px solid rgba(245,166,35,0.2);"><div style="font-size:11px;font-weight:600;color:var(--gold);">AUTHENTICATING</div><div style="font-size:9px;color:var(--gray);">PIN + OTP gates</div></div>
+        <div style="text-align:center;color:var(--bluel);font-size:12px;">↓</div>
+        <div style="background:var(--card2);border-radius:6px;padding:8px 10px;text-align:center;border:1px solid rgba(124,58,237,0.2);"><div style="font-size:11px;font-weight:600;color:var(--purple);">EXECUTING</div><div style="font-size:9px;color:var(--gray);">Payment transfer in progress</div></div>
+        <div style="text-align:center;color:var(--bluel);font-size:12px;">↓</div>
+        <div style="background:var(--card2);border-radius:6px;padding:8px 10px;text-align:center;border:1px solid rgba(18,196,154,0.3);"><div style="font-size:11px;font-weight:600;color:var(--teall);">IDLE (reset)</div><div style="font-size:9px;color:var(--gray);">Confirmation delivered, log written</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3: ARCHITECTURE
+══════════════════════════════════════════ -->
+<div class="section" id="section-architecture">
+  <div class="section-tag">03 — System Architecture</div>
+  <div class="h2">Five-Layer System Design</div>
+
+  <div class="layer"><div class="layer-bar" style="background:var(--bluel);"></div><div><div class="layer-title" style="color:var(--bluel);">Layer 1 — Voice Input</div><div class="layer-tech">Web Speech API (browser-native) · Groq Whisper large-v3 (cloud STT) · Text input fallback · IVR planned Q3 2026<br><span style="color:var(--teall);">→ Output: text transcript of user command</span></div></div></div>
+  <div class="layer"><div class="layer-bar" style="background:var(--bluel);"></div><div><div class="layer-title" style="color:var(--bluel);">Layer 2 — AI / NLP Processing</div><div class="layer-tech">Groq LLM (llama-3) via pydantic-ai · Intent classification (payment/query/help) · Slot extraction (intent, amount, recipient) · Orchestrator state machine (domain/orchestrator.py)<br><span style="color:var(--teall);">→ Output: structured TransferRequest object</span></div></div></div>
+  <div class="layer"><div class="layer-bar" style="background:var(--teal);"></div><div><div class="layer-title" style="color:var(--teall);">Layer 3 — Payment Orchestration</div><div class="layer-tech">Payment state machine (idle → pending_confirm → executing → idle) · Beneficiary verification loop · Idempotency guard (MD5 → UUID, PostgreSQL UNIQUE constraint) · Confirmation dialogue management<br><span style="color:var(--teall);">→ Output: authorised, idempotent payment instruction</span></div></div></div>
+  <div class="layer"><div class="layer-bar" style="background:var(--teall);"></div><div><div class="layer-title" style="color:var(--teall);">Layer 4 — Banking / API Layer</div><div class="layer-tech">FastAPI gateway service (:8100) · Dummy payment rails (providers/dummy.py) · SQLAlchemy atomic debit+credit transactions · Supabase-hosted PostgreSQL · Balance engine · Refund/reversal endpoints<br><span style="color:var(--teall);">→ Output: completed transaction record</span></div></div></div>
+  <div class="layer"><div class="layer-bar" style="background:var(--gold);"></div><div><div class="layer-title" style="color:var(--gold);">Layer 5 — Security & Authentication</div><div class="layer-tech">Email/password login · bcrypt PIN (4-8 digits, never stored plain) · OTP challenge (single-use, replay-blocked) · Session JWT (Bearer token) · Rule-based fraud scoring (velocity + amount) · Append-only audit log · Voice biometrics — Q2 2026<br><span style="color:var(--teall);">→ Output: authenticated, risk-scored, logged transaction</span></div></div></div>
+
+  <div class="divider"></div>
+  <div class="card bl">
+    <h4>Full API Surface</h4>
+    <div class="g2">
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--bluel);margin-bottom:8px;">Agent Service (:8000)</div>
+        <table class="tbl">
+          <thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>POST</td><td>/auth/cli/login</td><td>Issue session JWT</td></tr>
+            <tr><td>POST</td><td>/auth/challenge/start</td><td>Begin OTP flow</td></tr>
+            <tr><td>POST</td><td>/auth/challenge/verify</td><td>Validate OTP code</td></tr>
+            <tr><td>POST</td><td>/agent/message</td><td>Core: voice/text → AI response</td></tr>
+            <tr><td>POST</td><td>/agent/confirm</td><td>User confirmation handler</td></tr>
+            <tr><td>GET</td><td>/agent/session/{id}</td><td>Session state retrieval</td></tr>
+            <tr><td>GET</td><td>/health</td><td>Service health check</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--teall);margin-bottom:8px;">Gateway Service (:8100) — Internal</div>
+        <table class="tbl">
+          <thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>POST</td><td>/users/provision</td><td>Register new user</td></tr>
+            <tr><td>GET</td><td>/users/by-supabase/{uid}</td><td>Fetch user status</td></tr>
+            <tr><td>POST</td><td>/receivers/verify</td><td>Beneficiary lookup</td></tr>
+            <tr><td>POST</td><td>/payments/validate</td><td>Risk score check</td></tr>
+            <tr><td>POST</td><td>/payments/transfer</td><td>Execute P2P transfer</td></tr>
+            <tr><td>GET</td><td>/payments/{tx_id}</td><td>Transaction record</td></tr>
+            <tr><td>GET</td><td>/accounts/{uid}/balance</td><td>Balance lookup</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4: TECHNICAL MAPPING
+══════════════════════════════════════════ -->
+<div class="section" id="section-technical">
+  <div class="section-tag">04 — Technical Mapping (GitHub Repo)</div>
+  <div class="h2">Code Architecture — github.com/Sonalika0696/talkpay</div>
+
+  <div class="card tl">
+    <h4>Repository Structure</h4>
+    <div class="code-block">talkpay/
+├── <span class="c-fn">src/</span>                        <span class="c-cm"># React frontend (TypeScript)</span>
+│   ├── <span class="c-fn">components/</span>             <span class="c-cm"># UI components (shadcn/ui base)</span>
+│   │   ├── VoiceInput.tsx         <span class="c-cm"># Mic capture + Web Speech API hook</span>
+│   │   ├── ChatInterface.tsx      <span class="c-cm"># Conversation UI — user/AI message rendering</span>
+│   │   ├── PaymentConfirm.tsx     <span class="c-cm"># Confirmation dialogue component</span>
+│   │   ├── SecurityGate.tsx       <span class="c-cm"># PIN + OTP input flows</span>
+│   │   └── Dashboard.tsx          <span class="c-cm"># Account balance + transaction history</span>
+│   ├── <span class="c-fn">pages/</span>                  <span class="c-cm"># React Router pages</span>
+│   │   ├── Index.tsx              <span class="c-cm"># Landing / hero page</span>
+│   │   ├── Signup.tsx             <span class="c-cm"># 5-step onboarding wizard</span>
+│   │   └── Pay.tsx                <span class="c-cm"># Core voice payment interface</span>
+│   ├── <span class="c-fn">hooks/</span>
+│   │   ├── useVoiceInput.ts       <span class="c-cm"># Web Speech API wrapper</span>
+│   │   └── usePaymentFlow.ts      <span class="c-cm"># Payment state + API orchestration</span>
+│   ├── <span class="c-fn">lib/</span>
+│   │   └── api.ts                 <span class="c-cm"># Axios/fetch API client (agent service)</span>
+│   └── <span class="c-fn">types/</span>
+│       └── payment.ts             <span class="c-cm"># TypeScript interfaces: TransferRequest, etc.</span>
+├── <span class="c-kw">public/</span>                     <span class="c-cm"># Static assets</span>
+├── index.html                     <span class="c-cm"># Vite entry point</span>
+├── package.json                   <span class="c-cm"># Deps: React 18, Vite, Tailwind, shadcn</span>
+├── tailwind.config.ts             <span class="c-cm"># Design system tokens</span>
+└── vite.config.ts                 <span class="c-cm"># Build config — Vercel deployment</span></div>
+  </div>
+
+  <div class="g2">
+    <div class="card bl">
+      <h4>Core Frontend Logic</h4>
+      <div class="code-block"><span class="c-cm">// useVoiceInput.ts — simplified</span>
+<span class="c-kw">const</span> <span class="c-fn">useVoiceInput</span> = () => {
+  <span class="c-kw">const</span> recognition = <span class="c-kw">new</span>
+    <span class="c-ty">SpeechRecognition</span>();
+
+  recognition.onresult = (e) => {
+    <span class="c-kw">const</span> transcript =
+      e.results[0][0].transcript;
+    <span class="c-fn">sendToAgent</span>(transcript);
+  };
+  <span class="c-kw">return</span> { start, stop, transcript };
+};</div>
+      <div class="code-block"><span class="c-cm">// usePaymentFlow.ts — state machine</span>
+<span class="c-kw">type</span> <span class="c-ty">State</span> = <span class="c-str">'idle'</span>
+  | <span class="c-str">'pending_confirm'</span>
+  | <span class="c-str">'authenticating'</span>
+  | <span class="c-str">'executing'</span>;
+
+<span class="c-kw">const</span> <span class="c-fn">sendMessage</span> = <span class="c-kw">async</span> (text) => {
+  <span class="c-kw">const</span> res = <span class="c-kw">await</span> <span class="c-fn">api.post</span>(
+    <span class="c-str">'/agent/message'</span>, { text }
+  );
+  <span class="c-fn">setState</span>(res.data.next_state);
+  <span class="c-fn">speakReply</span>(res.data.reply);
+};</div>
+    </div>
+    <div class="card tl">
+      <h4>Payment Contracts</h4>
+      <div class="code-block"><span class="c-cm">// TransferRequest (TypeScript)</span>
+<span class="c-kw">interface</span> <span class="c-ty">TransferRequest</span> {
+  idempotency_key: <span class="c-ty">string</span>;
+  sender_user_id:  <span class="c-ty">number</span>;
+  receiver_email:  <span class="c-ty">string</span>;
+  amount_aed:      <span class="c-ty">Decimal</span>;
+  session_id:      <span class="c-ty">string</span>;
+}
+
+<span class="c-kw">interface</span> <span class="c-ty">TransferResponse</span> {
+  transaction_id:  <span class="c-ty">string</span>;
+  status: <span class="c-str">'completed'</span> | <span class="c-str">'failed'</span>;
+  balance_after:   <span class="c-ty">Decimal</span>;
+}</div>
+      <div class="code-block"><span class="c-cm">// Idempotency key generation</span>
+<span class="c-kw">const</span> <span class="c-fn">genKey</span> = (
+  sessionId: <span class="c-ty">string</span>,
+  amount: <span class="c-ty">string</span>,
+  receiver: <span class="c-ty">string</span>
+) => {
+  <span class="c-kw">const</span> payload =
+    `${sessionId}:${amount}:${receiver}`;
+  <span class="c-kw">return</span> <span class="c-fn">uuidFromMD5</span>(payload);
+  <span class="c-cm">// PostgreSQL UNIQUE constraint</span>
+  <span class="c-cm">// blocks replay attacks</span>
+};</div>
+    </div>
+  </div>
+
+  <div class="card gl">
+    <h4>Technology Stack</h4>
+    <table class="tbl">
+      <thead><tr><th>Layer</th><th>Technology</th><th>Purpose</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Frontend</td><td>React 18 + TypeScript</td><td>UI components, routing, state management</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>Build</td><td>Vite + Bun</td><td>Fast dev server + production bundler</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>Styling</td><td>Tailwind CSS + shadcn/ui</td><td>Design system, accessible UI components</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>Deployment</td><td>Vercel</td><td>CDN hosting, edge functions</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>STT</td><td>Web Speech API / Groq Whisper</td><td>Voice-to-text transcription</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>AI Agent</td><td>Groq LLM + pydantic-ai</td><td>Intent extraction, payment orchestration</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>Backend API</td><td>FastAPI + Uvicorn</td><td>Agent service (:8000) + Gateway (:8100)</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>Database</td><td>PostgreSQL + Supabase</td><td>User, account, transaction storage</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>Auth</td><td>bcrypt + JWT + OTP</td><td>Multi-factor authentication</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>TTS</td><td>Deepgram + Groq fallback</td><td>Text-to-speech responses</td><td><span class="pill p-built">Live</span></td></tr>
+        <tr><td>Voice Biometrics</td><td>Voiceprint (planned)</td><td>Biometric payment authentication</td><td><span class="pill p-partial">Q2 2026</span></td></tr>
+        <tr><td>Mobile</td><td>React Native</td><td>Native iOS/Android app</td><td><span class="pill p-planned">Q2 2026</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5: FINANCIALS
+══════════════════════════════════════════ -->
+<div class="section" id="section-financials">
+  <div class="section-tag">05 — Financial Model</div>
+  <div class="h2">Revenue Projections — AED</div>
+
+  <div class="g4" style="margin-bottom:1rem;">
+    <div class="mc"><div class="mv">600K</div><div class="ml">Year 1 Revenue (AED)</div></div>
+    <div class="mc blue"><div class="mv">2.25M</div><div class="ml">Year 2 Revenue (AED)</div></div>
+    <div class="mc gold"><div class="mv">6M+</div><div class="ml">Year 3 Revenue (AED)</div></div>
+    <div class="mc"><div class="mv" style="color:var(--purple);">65%+</div><div class="ml">Projected Gross Margin</div></div>
+  </div>
+
+  <div class="card tl">
+    <h4>Transaction Fee Model</h4>
+    <table class="tbl">
+      <thead><tr><th>Metric</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr></thead>
+      <tbody>
+        <tr><td>Active Users</td><td>40,000</td><td>150,000</td><td>400,000</td></tr>
+        <tr><td>Transactions / User / Year</td><td>100</td><td>100</td><td>100</td></tr>
+        <tr><td>Total Transactions</td><td>4,000,000</td><td>15,000,000</td><td>40,000,000</td></tr>
+        <tr><td>Fee per Transaction</td><td>0.15 AED</td><td>0.15 AED</td><td>0.15 AED</td></tr>
+        <tr><td style="color:var(--teall);font-weight:600;">Transaction Revenue</td><td style="color:var(--teall);font-weight:600;">AED 600,000</td><td style="color:var(--teall);font-weight:600;">AED 2,250,000</td><td style="color:var(--teall);font-weight:600;">AED 6,000,000</td></tr>
+        <tr><td>SaaS + API + Enterprise</td><td>Launching</td><td>+30% uplift</td><td>+50% uplift</td></tr>
+        <tr><td style="color:var(--gold);font-weight:600;">Total Revenue (est.)</td><td style="color:var(--gold);">AED 600K</td><td style="color:var(--gold);">AED 2.9M</td><td style="color:var(--gold);">AED 9M+</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="g2">
+    <div class="card bl">
+      <h4>Revenue Streams</h4>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card2);border-radius:6px;padding:8px 10px;"><span style="font-size:10px;color:var(--white);">💳 Transaction Fees</span><span style="font-size:10px;color:var(--teall);font-weight:600;">Core revenue</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card2);border-radius:6px;padding:8px 10px;"><span style="font-size:10px;color:var(--white);">🏢 B2B SaaS Subscriptions</span><span style="font-size:10px;color:var(--bluel);font-weight:600;">Year 2+</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card2);border-radius:6px;padding:8px 10px;"><span style="font-size:10px;color:var(--white);">🔌 API Access (developer)</span><span style="font-size:10px;color:var(--bluel);font-weight:600;">Year 2+</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card2);border-radius:6px;padding:8px 10px;"><span style="font-size:10px;color:var(--white);">🤝 Enterprise Licensing</span><span style="font-size:10px;color:var(--gold);font-weight:600;">Year 3</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card2);border-radius:6px;padding:8px 10px;"><span style="font-size:10px;color:var(--white);">🧠 AI Financial Services</span><span style="font-size:10px;color:var(--gold);font-weight:600;">Year 3+</span></div>
+      </div>
+    </div>
+    <div class="card gl">
+      <h4>Feature Build Status (15 features)</h4>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-top:4px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Voice payment execution</span><span class="pill p-built">Built</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Conversation audit trail</span><span class="pill p-built">Built</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Beneficiary verification</span><span class="pill p-built">Built</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Idempotency controls</span><span class="pill p-built">Built</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Multi-factor auth (PIN+OTP)</span><span class="pill p-built">Built</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Onboarding + landing page</span><span class="pill p-built">Built</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Real-time risk scoring</span><span class="pill p-partial">Partial</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Voice biometric auth</span><span class="pill p-partial">Q2 2026</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">B2B SaaS architecture</span><span class="pill p-partial">Q4 2026</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Smart expense tracking</span><span class="pill p-planned">Q3 2026</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">AI financial advisor</span><span class="pill p-planned">Q3 2026</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">IVR / offline mode</span><span class="pill p-planned">Q3 2026</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">Full ML fraud detection</span><span class="pill p-planned">Q4 2026</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:10px;color:var(--text);">DFSA regulatory sandbox</span><span class="pill p-planned">Q1 2027</span></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="text-align:center;flex:1;"><div style="font-size:18px;font-weight:700;color:var(--teall);">6</div><div style="font-size:9px;color:var(--gray);">Built</div></div>
+        <div style="text-align:center;flex:1;"><div style="font-size:18px;font-weight:700;color:var(--gold);">3</div><div style="font-size:9px;color:var(--gray);">Partial</div></div>
+        <div style="text-align:center;flex:1;"><div style="font-size:18px;font-weight:700;color:var(--gray);">6</div><div style="font-size:9px;color:var(--gray);">Planned</div></div>
+        <div style="text-align:center;flex:1;"><div style="font-size:18px;font-weight:700;color:var(--white);">15</div><div style="font-size:9px;color:var(--gray);">Total</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-top:2px solid var(--teall);">
+    <div style="text-align:center;padding:8px 0;">
+      <div style="font-size:12px;font-weight:600;color:var(--teall);margin-bottom:4px;">Vision</div>
+      <div style="font-size:13px;color:var(--white);line-height:1.6;">The next billion people deserve to manage money as easily as <strong>having a conversation.</strong><br>TalkPay is the trusted voice layer that makes it possible — today in the UAE, tomorrow everywhere.</div>
+      <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <span class="badge b-teal">🔗 talkpay.lovable.app</span>
+        <span class="badge b-blue">🐱 github.com/Sonalika0696/talkpay</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6: TRANSACTION HISTORY
+══════════════════════════════════════════ -->
+<div class="section" id="section-txhistory">
+  <div class="section-tag">06 — Transaction History</div>
+  <div class="h2">Full Payment Ledger — Every AED, Tracked</div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen — Transaction History Dashboard</span>
+      <span class="screen-url">talkpay.lovable.app/history</span>
+    </div>
+
+    <!-- Summary strip -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;">
+      <div class="mc"><div class="mv" style="font-size:18px;">AED 12,450</div><div class="ml">Total Sent (April)</div></div>
+      <div class="mc blue"><div class="mv" style="font-size:18px;">AED 8,200</div><div class="ml">Total Received</div></div>
+      <div class="mc gold"><div class="mv" style="font-size:18px;">47</div><div class="ml">Transactions</div></div>
+      <div class="mc"><div class="mv" style="font-size:18px;color:var(--teall);">AED 800</div><div class="ml">Current Balance</div></div>
+    </div>
+
+    <!-- Filter bar -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
+      <div id="f-all"   onclick="filterTx('all',this)"   style="padding:5px 14px;border-radius:16px;font-size:11px;background:var(--bluel);color:#fff;cursor:pointer;border:1px solid var(--bluel);">All</div>
+      <div id="f-sent"  onclick="filterTx('sent',this)"  style="padding:5px 14px;border-radius:16px;font-size:11px;background:transparent;color:var(--gray);cursor:pointer;border:1px solid rgba(45,112,247,0.3);">Sent</div>
+      <div id="f-recv"  onclick="filterTx('recv',this)"  style="padding:5px 14px;border-radius:16px;font-size:11px;background:transparent;color:var(--gray);cursor:pointer;border:1px solid rgba(45,112,247,0.3);">Received</div>
+      <div id="f-bill"  onclick="filterTx('bill',this)"  style="padding:5px 14px;border-radius:16px;font-size:11px;background:transparent;color:var(--gray);cursor:pointer;border:1px solid rgba(45,112,247,0.3);">Bills</div>
+      <div id="f-invest" onclick="filterTx('invest',this)" style="padding:5px 14px;border-radius:16px;font-size:11px;background:transparent;color:var(--gray);cursor:pointer;border:1px solid rgba(45,112,247,0.3);">Investments</div>
+      <div style="margin-left:auto;padding:5px 14px;border-radius:16px;font-size:11px;background:transparent;color:var(--gray);border:1px solid rgba(45,112,247,0.2);">↓ Export CSV</div>
+    </div>
+
+    <!-- Transaction list -->
+    <div id="tx-list" style="display:flex;flex-direction:column;gap:6px;">
+      <!-- rows injected by JS -->
+    </div>
+
+    <div class="g3" style="margin-top:14px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">How It Works</div><div style="font-size:10px;color:var(--gray);">Every voice payment appends an immutable row to PostgreSQL. The ledger is append-only — no edits, full audit trail.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">API: GET /payments</div><div style="font-size:10px;color:var(--gray);">Paginated, filterable by date/type/status. Each row includes TXN-ID, amount, recipient, risk score, timestamp.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">Category Auto-Tagging</div><div style="font-size:10px;color:var(--gray);">LLM tags each transaction (food, rent, salary, investment) from voice context — powers AI Advice tab.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7: VOICE HISTORY
+══════════════════════════════════════════ -->
+<div class="section" id="section-voicehistory">
+  <div class="section-tag">07 — Voice History</div>
+  <div class="h2">Every Conversation. Fully Audited.</div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen — Voice Conversation Log</span>
+      <span class="screen-url">talkpay.lovable.app/voice-log</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;">
+      <div class="mc"><div class="mv" style="font-size:18px;">143</div><div class="ml">Voice commands this month</div></div>
+      <div class="mc blue"><div class="mv" style="font-size:18px;">1.4s</div><div class="ml">Avg. response time</div></div>
+      <div class="mc"><div class="mv" style="font-size:18px;color:var(--teall);">98.2%</div><div class="ml">Intent accuracy</div></div>
+    </div>
+
+    <!-- Session list with expandable convo -->
+    <div style="display:flex;flex-direction:column;gap:8px;" id="voice-sessions">
+    </div>
+
+    <div class="g3" style="margin-top:14px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">Audit Trail</div><div style="font-size:10px;color:var(--gray);">Every STT transcript, agent reply, and action is logged with session_id, timestamp, and outcome. Stored encrypted.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">API: GET /agent/session/{id}</div><div style="font-size:10px;color:var(--gray);">Returns full dialogue, slot extractions, state transitions, risk decisions, and transaction outcomes per session.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">Replay & Dispute</div><div style="font-size:10px;color:var(--gray);">Any session can be replayed for compliance review. Supports dispute resolution with voice + transcript evidence.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8: CALENDAR
+══════════════════════════════════════════ -->
+<div class="section" id="section-calendar">
+  <div class="section-tag">08 — Payment Calendar</div>
+  <div class="h2">Salary Day. EMI Due. Bill Deadlines. All in One View.</div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen — Financial Calendar</span>
+      <span class="screen-url">talkpay.lovable.app/calendar</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px;">
+      <!-- Calendar grid -->
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div style="font-size:14px;font-weight:600;color:var(--white);">April 2026</div>
+          <div style="display:flex;gap:8px;">
+            <div style="background:var(--card2);border-radius:5px;padding:4px 10px;font-size:11px;color:var(--gray);cursor:pointer;">‹</div>
+            <div style="background:var(--card2);border-radius:5px;padding:4px 10px;font-size:11px;color:var(--gray);cursor:pointer;">›</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:6px;">
+          <div style="text-align:center;font-size:9px;color:var(--gray);padding:4px;">S</div><div style="text-align:center;font-size:9px;color:var(--gray);padding:4px;">M</div><div style="text-align:center;font-size:9px;color:var(--gray);padding:4px;">T</div><div style="text-align:center;font-size:9px;color:var(--gray);padding:4px;">W</div><div style="text-align:center;font-size:9px;color:var(--gray);padding:4px;">T</div><div style="text-align:center;font-size:9px;color:var(--gray);padding:4px;">F</div><div style="text-align:center;font-size:9px;color:var(--gray);padding:4px;">S</div>
+        </div>
+        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;"></div>
+      </div>
+
+      <!-- Upcoming events -->
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--teall);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Upcoming</div>
+        <div id="upcoming-events" style="display:flex;flex-direction:column;gap:7px;"></div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid rgba(45,112,247,0.15);">
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--teall);"></div><div style="font-size:10px;color:var(--gray);">Salary Credit</div></div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--red);"></div><div style="font-size:10px;color:var(--gray);">EMI / Loan Due</div></div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--gold);"></div><div style="font-size:10px;color:var(--gray);">Bill Deadline</div></div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--purple);"></div><div style="font-size:10px;color:var(--gray);">Investment Transfer</div></div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--bluel);"></div><div style="font-size:10px;color:var(--gray);">Scheduled Payment</div></div>
+    </div>
+
+    <div class="g3" style="margin-top:12px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">Voice-set Events</div><div style="font-size:10px;color:var(--gray);">"Remind me every 1st — pay rent to Ahmed" → auto-schedules recurring event + payment intent.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">Smart Alerts</div><div style="font-size:10px;color:var(--gray);">3-day advance push + voice reminder before every due date. AI checks balance and warns if insufficient.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">Auto-Pay Ready</div><div style="font-size:10px;color:var(--gray);">One-time authorization for recurring payments. System executes on schedule — user confirms via OTP only.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 9: AI ADVICE
+══════════════════════════════════════════ -->
+<div class="section" id="section-advice">
+  <div class="section-tag">09 — AI Financial Advice</div>
+  <div class="h2">Balance Health. Smart Product Recommendations. Built-In.</div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen — AI Advisor Dashboard</span>
+      <span class="screen-url">talkpay.lovable.app/advisor</span>
+    </div>
+
+    <!-- Health score -->
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:14px;">
+      <div style="background:var(--card2);border-radius:10px;padding:18px;text-align:center;border:1px solid rgba(18,196,154,0.25);">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--teall);margin-bottom:8px;">BALANCE HEALTH SCORE</div>
+        <div id="health-ring" style="width:90px;height:90px;margin:0 auto 10px;position:relative;">
+          <svg viewBox="0 0 90 90" width="90" height="90">
+            <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(45,112,247,0.15)" stroke-width="8"/>
+            <circle cx="45" cy="45" r="38" fill="none" stroke="var(--teall)" stroke-width="8" stroke-dasharray="200 239" stroke-linecap="round" transform="rotate(-90 45 45)"/>
+            <text x="45" y="50" text-anchor="middle" fill="white" font-size="18" font-weight="700">72</text>
+          </svg>
+        </div>
+        <div style="font-size:11px;font-weight:600;color:var(--teall);">Good</div>
+        <div style="font-size:9px;color:var(--gray);margin-top:4px;">Score out of 100</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--white);margin-bottom:10px;">Health Breakdown</div>
+        <div id="health-bars" style="display:flex;flex-direction:column;gap:10px;"></div>
+      </div>
+    </div>
+
+    <!-- Spending breakdown -->
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:600;color:var(--white);margin-bottom:10px;">Monthly Spending Breakdown</div>
+      <div id="spending-bars" style="display:flex;flex-direction:column;gap:7px;"></div>
+    </div>
+
+    <!-- Product recommendations -->
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:600;color:var(--white);margin-bottom:10px;">🏦 Recommended for You — Based on Your Spending</div>
+      <div id="product-recs" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+    </div>
+
+    <div class="g3" style="margin-top:4px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">How Score Is Computed</div><div style="font-size:10px;color:var(--gray);">Savings ratio (30%) + spending regularity (25%) + debt load (25%) + emergency fund coverage (20%) — updated daily.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">LLM-Powered Insights</div><div style="font-size:10px;color:var(--gray);">Transaction history fed to LLM to generate natural language spending summaries and personalised savings nudges.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">Bank API Integration</div><div style="font-size:10px;color:var(--gray);">Product recommendations pull live rates from partner banks via open banking APIs — no manual updates needed.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 10: REMINDERS
+══════════════════════════════════════════ -->
+<div class="section" id="section-reminders">
+  <div class="section-tag">10 — Smart Reminders</div>
+  <div class="h2">Invest. Save. Never Miss a Deadline.</div>
+
+  <div class="screen-wrap">
+    <div class="screen-header">
+      <span class="screen-title">Screen — Reminders & Smart Nudges</span>
+      <span class="screen-url">talkpay.lovable.app/reminders</span>
+    </div>
+
+    <!-- Add reminder via voice -->
+    <div style="background:var(--card2);border-radius:8px;padding:12px;margin-bottom:14px;border:1px solid rgba(45,112,247,0.2);">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bluel);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎙</div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--white);">Add reminder by voice</div>
+          <div style="font-size:10px;color:var(--gray);">Say: "Remind me to transfer AED 500 to savings every 25th" or "Alert me 3 days before my car EMI"</div>
+        </div>
+        <div style="margin-left:auto;background:var(--bluel);color:#fff;border-radius:6px;padding:6px 14px;font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap;">+ Add</div>
+      </div>
+    </div>
+
+    <!-- Active reminders -->
+    <div style="font-size:11px;font-weight:600;color:var(--white);margin-bottom:10px;">Active Reminders</div>
+    <div id="reminder-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;"></div>
+
+    <!-- Investment nudges -->
+    <div style="font-size:11px;font-weight:600;color:var(--white);margin-bottom:10px;">💡 AI-Generated Investment & Savings Nudges</div>
+    <div id="nudge-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+
+    <div class="g3" style="margin-top:14px;">
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--bluel);margin-bottom:4px;">Voice-Driven Scheduling</div><div style="font-size:10px;color:var(--gray);">Natural language reminder creation — LLM extracts date, recurrence, amount, and type from voice command.</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--teall);margin-bottom:4px;">Contextual Nudges</div><div style="font-size:10px;color:var(--gray);">AI checks balance after salary credit and proactively suggests "You have AED 1,200 surplus — invest AED 500?"</div></div>
+      <div style="background:var(--card);border-radius:6px;padding:8px 10px;"><div style="font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;">Multi-Channel Delivery</div><div style="font-size:10px;color:var(--gray);">Reminders delivered via voice (TTS), push notification, SMS fallback, and in-app banner — zero missed alerts.</div></div>
+    </div>
+  </div>
+</div>
+
+</div>
+<style>
+.mc{background:var(--card2);border-radius:8px;padding:12px 10px;text-align:center;}
+.mc .mv{font-size:22px;font-weight:700;color:var(--teall);}
+.mc .ml{font-size:9px;color:var(--gray);margin-top:4px;}
+.mc.blue .mv{color:var(--bluel);}
+.mc.gold .mv{color:var(--gold);}
+</style>
+<script>
+function show(id, btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+
+/* ── TRANSACTION HISTORY DATA ── */
+const txData = [
+  {type:'sent',  cat:'food',    icon:'🍔', name:'Careem Eats',       amt:'-AED 85',   date:'11 Apr',  time:'12:34', status:'completed', risk:'LOW',  id:'TXN-4821'},
+  {type:'recv',  cat:'salary',  icon:'💼', name:'Salary Credit',     amt:'+AED 8,500',date:'10 Apr',  time:'09:00', status:'completed', risk:'NONE', id:'TXN-4820'},
+  {type:'sent',  cat:'bill',    icon:'⚡', name:'DEWA Bill',          amt:'-AED 320',  date:'9 Apr',   time:'14:10', status:'completed', risk:'LOW',  id:'TXN-4819'},
+  {type:'sent',  cat:'invest',  icon:'📈', name:'Sukuk Savings',     amt:'-AED 500',  date:'9 Apr',   time:'10:00', status:'completed', risk:'LOW',  id:'TXN-4818'},
+  {type:'sent',  cat:'food',    icon:'☕', name:'Starbucks',          amt:'-AED 42',   date:'8 Apr',   time:'08:22', status:'completed', risk:'LOW',  id:'TXN-4817'},
+  {type:'recv',  cat:'recv',    icon:'👤', name:'From Sara Al-Hassan',amt:'+AED 200',  date:'7 Apr',   time:'16:05', status:'completed', risk:'LOW',  id:'TXN-4816'},
+  {type:'sent',  cat:'bill',    icon:'📱', name:'Etisalat Telecom',  amt:'-AED 199',  date:'5 Apr',   time:'11:30', status:'completed', risk:'LOW',  id:'TXN-4815'},
+  {type:'sent',  cat:'invest',  icon:'🏦', name:'Emirates NBD Savings',amt:'-AED 1,000',date:'1 Apr', time:'09:00', status:'completed', risk:'LOW',  id:'TXN-4814'},
+  {type:'sent',  cat:'sent',    icon:'👤', name:'Ahmed Khan',         amt:'-AED 200',  date:'1 Apr',   time:'18:42', status:'completed', risk:'LOW',  id:'TXN-4813'},
+];
+
+function catColor(cat){
+  return cat==='salary'?'var(--teall)':cat==='invest'?'var(--purple)':cat==='bill'?'var(--gold)':cat==='recv'?'var(--bluel)':'var(--gray)';
+}
+function renderTx(data){
+  const list = document.getElementById('tx-list');
+  if(!list) return;
+  list.innerHTML = data.map(t=>`
+    <div style="background:var(--card2);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:12px;border:1px solid rgba(45,112,247,0.1);">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${t.icon}</div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:11px;font-weight:600;color:var(--white);">${t.name}</span>
+          <span style="font-size:9px;padding:2px 7px;border-radius:8px;background:rgba(124,147,187,0.1);color:${catColor(t.cat)};border:1px solid ${catColor(t.cat)}40;">${t.cat}</span>
+        </div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px;">${t.date} · ${t.time} · ${t.id} · Risk: ${t.risk}</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:12px;font-weight:700;color:${t.amt.startsWith('+')? 'var(--teall)':'var(--white)'};">${t.amt}</div>
+        <div style="font-size:9px;color:var(--teall);margin-top:2px;">✓ ${t.status}</div>
+      </div>
+    </div>`).join('');
+}
+function filterTx(type, el){
+  document.querySelectorAll('[id^="f-"]').forEach(e=>{
+    e.style.background='transparent';e.style.color='var(--gray)';e.style.borderColor='rgba(45,112,247,0.3)';
+  });
+  el.style.background='var(--bluel)';el.style.color='#fff';el.style.borderColor='var(--bluel)';
+  const filtered = type==='all'? txData : txData.filter(t=>t.type===type||t.cat===type);
+  renderTx(filtered);
+}
+
+/* ── VOICE HISTORY DATA ── */
+const voiceSessions = [
+  {date:'11 Apr 2026 12:34',dur:'28s',outcome:'✓ Sent AED 85 to Careem Eats',status:'success',msgs:[
+    {r:false,t:'🎙 How can I help you today?'},
+    {r:true, t:'Pay 85 AED to Careem Eats'},
+    {r:false,t:'🤖 Found Careem Eats account. Confirm AED 85.00?'},
+    {r:true, t:'Yes'},
+    {r:false,t:'🔒 PIN + OTP verified. ✓ AED 85 sent. TXN-4821'},
+  ]},
+  {date:'10 Apr 2026 18:20',dur:'14s',outcome:'✓ Balance checked',status:'success',msgs:[
+    {r:true, t:'What\'s my balance?'},
+    {r:false,t:'🤖 Your current balance is AED 8,500. Salary credited today.'},
+  ]},
+  {date:'9 Apr 2026 14:10',dur:'42s',outcome:'✓ Sent AED 320 to DEWA',status:'success',msgs:[
+    {r:true, t:'Pay my DEWA electricity bill'},
+    {r:false,t:'🤖 DEWA bill detected: AED 320.00 due 9 Apr. Confirm payment?'},
+    {r:true, t:'Yes confirm'},
+    {r:false,t:'🔒 Authenticated. ✓ DEWA bill paid. TXN-4819'},
+  ]},
+  {date:'8 Apr 2026 09:00',dur:'19s',outcome:'✗ Cancelled by user',status:'cancelled',msgs:[
+    {r:true, t:'Send 5000 AED to unknown'},
+    {r:false,t:'🤖 Recipient not found in your beneficiaries. Add manually?'},
+    {r:true, t:'No cancel'},
+    {r:false,t:'✓ Payment cancelled. No funds moved.'},
+  ]},
+];
+
+function renderVoice(){
+  const el = document.getElementById('voice-sessions');
+  if(!el) return;
+  el.innerHTML = voiceSessions.map((s,i)=>`
+    <div style="background:var(--card2);border-radius:8px;border:1px solid rgba(45,112,247,0.15);overflow:hidden;">
+      <div onclick="toggleSession(${i})" style="display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;">
+        <div style="width:28px;height:28px;border-radius:50%;background:${s.status==='success'?'rgba(18,196,154,0.2)':'rgba(255,77,77,0.15)'};display:flex;align-items:center;justify-content:center;font-size:12px;">${s.status==='success'?'🎙':'⚠'}</div>
+        <div style="flex:1;">
+          <div style="font-size:11px;font-weight:600;color:var(--white);">${s.date}</div>
+          <div style="font-size:10px;color:var(--gray);">Duration: ${s.dur} · ${s.outcome}</div>
+        </div>
+        <div style="font-size:11px;color:var(--bluel);">▾</div>
+      </div>
+      <div id="vs-${i}" style="display:none;padding:0 14px 12px;">
+        <div style="background:var(--card);border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:6px;">
+          ${s.msgs.map(m=>`<div class="${m.r?'msg-r':'msg-l'}">${m.t}</div>`).join('')}
+        </div>
+      </div>
+    </div>`).join('');
+}
+function toggleSession(i){
+  const el = document.getElementById('vs-'+i);
+  if(el) el.style.display = el.style.display==='none'?'block':'none';
+}
+
+/* ── CALENDAR DATA ── */
+const calEvents = {
+  1:  [{c:'var(--teall)',  label:'Salary Day'}],
+  1:  [{c:'var(--teall)',  label:'Salary'}],
+  5:  [{c:'var(--red)',    label:'Car EMI'}],
+  9:  [{c:'var(--gold)',   label:'DEWA Bill'}],
+  11: [{c:'var(--bluel)',  label:'Today'}],
+  15: [{c:'var(--purple)', label:'Invest'}],
+  25: [{c:'var(--red)',    label:'Rent Due'}],
+  28: [{c:'var(--gold)',   label:'Etisalat'}],
+};
+const calUpcoming = [
+  {icon:'🏠',label:'Rent Payment',date:'25 Apr',amt:'AED 3,500',c:'var(--red)'},
+  {icon:'⚡',label:'DEWA Bill',   date:'9 May', amt:'AED ~320',c:'var(--gold)'},
+  {icon:'📱',label:'Etisalat',    date:'28 Apr',amt:'AED 199', c:'var(--gold)'},
+  {icon:'🚗',label:'Car EMI',     date:'5 May', amt:'AED 1,200',c:'var(--red)'},
+  {icon:'📈',label:'Invest Transfer',date:'15 Apr',amt:'AED 500',c:'var(--purple)'},
+];
+
+function renderCalendar(){
+  const grid = document.getElementById('cal-grid');
+  if(!grid) return;
+  const startDay = 3; // April 2026 starts Wednesday
+  let html='';
+  for(let i=0;i<startDay;i++) html+=`<div></div>`;
+  for(let d=1;d<=30;d++){
+    const ev = calEvents[d];
+    const isToday = d===11;
+    const dotHtml = ev? ev.map(e=>`<div style="width:5px;height:5px;border-radius:50%;background:${e.c};margin:0 auto;"></div>`).join(''):'';
+    html+=`<div style="background:${isToday?'var(--bluel)':'var(--card2)'};border-radius:5px;padding:5px 2px;text-align:center;cursor:pointer;border:${isToday?'1px solid var(--bluel)':ev?'1px solid rgba(45,112,247,0.2)':'1px solid transparent'};">
+      <div style="font-size:10px;color:${isToday?'#fff':'var(--gray)'};font-weight:${isToday?700:400};">${d}</div>
+      <div style="display:flex;justify-content:center;gap:2px;margin-top:2px;">${dotHtml}</div>
+    </div>`;
+  }
+  grid.innerHTML=html;
+  const upc = document.getElementById('upcoming-events');
+  if(upc) upc.innerHTML = calUpcoming.map(e=>`
+    <div style="background:var(--card2);border-radius:7px;padding:8px 10px;display:flex;align-items:center;gap:8px;border-left:3px solid ${e.c};">
+      <div style="font-size:14px;">${e.icon}</div>
+      <div style="flex:1;">
+        <div style="font-size:10px;font-weight:600;color:var(--white);">${e.label}</div>
+        <div style="font-size:9px;color:var(--gray);">${e.date}</div>
+      </div>
+      <div style="font-size:10px;font-weight:600;color:${e.c};">${e.amt}</div>
+    </div>`).join('');
+}
+
+/* ── ADVICE DATA ── */
+const healthBars=[
+  {label:'Savings Rate',val:62,target:20,c:'var(--teall)'},
+  {label:'Spending Control',val:78,target:70,c:'var(--bluel)'},
+  {label:'Debt-to-Income',val:55,target:60,c:'var(--gold)'},
+  {label:'Emergency Fund',val:40,target:50,c:'var(--red)'},
+];
+const spendingCats=[
+  {label:'🏠 Housing & Rent',  pct:42,amt:'AED 3,570',c:'var(--bluel)'},
+  {label:'🍔 Food & Dining',   pct:18,amt:'AED 1,530',c:'var(--gold)'},
+  {label:'📱 Telecoms & Bills',pct:12,amt:'AED 1,020',c:'var(--gray)'},
+  {label:'📈 Investments',     pct:12,amt:'AED 1,020',c:'var(--teall)'},
+  {label:'🚗 Transport',       pct:8, amt:'AED 680',  c:'var(--purple)'},
+  {label:'🛍 Shopping',        pct:8, amt:'AED 680',  c:'var(--red)'},
+];
+const productRecs=[
+  {icon:'🏦',name:'Emirates NBD Smart Saver',tag:'High Yield Savings',desc:'3.2% p.a. — matches your AED 1,020/mo savings pattern. No lock-in.',badge:'Best Match',bc:'var(--teall)'},
+  {icon:'💳',name:'FAB Cashback Card',tag:'Cashback Credit Card',desc:'5% back on dining + groceries. Based on your AED 1,530 food spend.',badge:'Save AED 76/mo',bc:'var(--gold)'},
+  {icon:'📊',name:'Wahed Invest Sukuk',tag:'Halal Investment',desc:'7.1% projected return. Suitable for your monthly AED 500 surplus.',badge:'Recommended',bc:'var(--purple)'},
+  {icon:'🛡',name:'AXA Term Life Cover',tag:'Insurance',desc:'AED 199/mo — protects 3× your monthly salary. Financial safety net.',badge:'Gap Detected',bc:'var(--red)'},
+];
+
+function renderAdvice(){
+  const hb = document.getElementById('health-bars');
+  if(hb) hb.innerHTML = healthBars.map(b=>`
+    <div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+        <span style="font-size:10px;color:var(--white);">${b.label}</span>
+        <span style="font-size:10px;font-weight:600;color:${b.c};">${b.val}%</span>
+      </div>
+      <div style="height:6px;background:rgba(45,112,247,0.15);border-radius:3px;position:relative;">
+        <div style="height:6px;border-radius:3px;background:${b.c};width:${b.val}%;transition:width .5s;"></div>
+        <div style="position:absolute;top:-4px;left:${b.target}%;width:2px;height:14px;background:rgba(255,255,255,0.3);border-radius:1px;"></div>
+      </div>
+      <div style="font-size:9px;color:var(--gray);margin-top:2px;">Target: ${b.target}%</div>
+    </div>`).join('');
+  const sb = document.getElementById('spending-bars');
+  if(sb) sb.innerHTML = spendingCats.map(s=>`
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:120px;flex-shrink:0;font-size:10px;color:var(--gray);">${s.label}</div>
+      <div style="flex:1;height:8px;background:rgba(45,112,247,0.1);border-radius:4px;">
+        <div style="height:8px;border-radius:4px;background:${s.c};width:${s.pct}%;"></div>
+      </div>
+      <div style="width:70px;text-align:right;font-size:10px;font-weight:600;color:var(--white);">${s.amt}</div>
+      <div style="width:28px;text-align:right;font-size:9px;color:var(--gray);">${s.pct}%</div>
+    </div>`).join('');
+  const pr = document.getElementById('product-recs');
+  if(pr) pr.innerHTML = productRecs.map(r=>`
+    <div style="background:var(--card2);border-radius:8px;padding:12px;border:1px solid rgba(45,112,247,0.15);">
+      <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;">
+        <div style="font-size:20px;">${r.icon}</div>
+        <div style="flex:1;">
+          <div style="font-size:11px;font-weight:600;color:var(--white);">${r.name}</div>
+          <div style="font-size:9px;color:var(--gray);">${r.tag}</div>
+        </div>
+        <div style="padding:3px 8px;border-radius:10px;font-size:9px;font-weight:600;background:${r.bc}20;color:${r.bc};border:1px solid ${r.bc}40;white-space:nowrap;">${r.badge}</div>
+      </div>
+      <div style="font-size:10px;color:var(--gray);line-height:1.5;">${r.desc}</div>
+      <div style="margin-top:8px;display:flex;gap:6px;">
+        <div style="flex:1;background:var(--bluel);color:#fff;border-radius:5px;padding:5px;text-align:center;font-size:10px;cursor:pointer;">Learn More</div>
+        <div style="flex:1;background:transparent;color:var(--gray);border-radius:5px;padding:5px;text-align:center;font-size:10px;cursor:pointer;border:1px solid rgba(45,112,247,0.2);">Dismiss</div>
+      </div>
+    </div>`).join('');
+}
+
+/* ── REMINDERS DATA ── */
+const reminders=[
+  {icon:'🏠',label:'Rent Payment',detail:'Send AED 3,500 to Ahmed — every 25th',next:'25 Apr 2026',type:'recurring',c:'var(--red)',active:true},
+  {icon:'📈',label:'Monthly Investment',detail:'Transfer AED 500 to Wahed Invest — every 15th',next:'15 Apr 2026',type:'recurring',c:'var(--purple)',active:true},
+  {icon:'🚗',label:'Car EMI Alert',detail:'AED 1,200 due — alert 3 days before',next:'2 May 2026',type:'alert',c:'var(--gold)',active:true},
+  {icon:'💡',label:'DEWA Bill Reminder',detail:'Auto-detected from history — alert on 6th',next:'6 May 2026',type:'smart',c:'var(--gold)',active:true},
+  {icon:'💰',label:'Savings Goal Check',detail:'Review savings balance — every Sunday',next:'13 Apr 2026',type:'recurring',c:'var(--teall)',active:false},
+];
+const nudges=[
+  {icon:'📈',title:'Invest your surplus',body:"You have AED 1,200 left after this month's bills. Consider moving AED 500 to Wahed Invest Sukuk — 7.1% projected return.",cta:'Invest Now',c:'var(--purple)'},
+  {icon:'🏦',title:'Build your emergency fund',body:"Your emergency fund covers only 1.2 months of expenses. Target: 3 months (AED 12,750). You're AED 5,800 away.",cta:'Start Saving',c:'var(--teall)'},
+  {icon:'💳',title:'Clear high-interest first',body:"You have AED 890 on a credit card at 24% APR. Paying this off saves AED 214/yr in interest before investing.",cta:'Pay Now',c:'var(--gold)'},
+  {icon:'🎯',title:'Salary-day playbook',body:"Salary credited 10 Apr. Recommended: AED 500 → invest, AED 3,500 → rent, AED 199 → Etisalat, AED 500 → savings. Leaves AED 3,801 for the month.",cta:'Execute Plan',c:'var(--bluel)'},
+];
+
+function renderReminders(){
+  const rl = document.getElementById('reminder-list');
+  if(rl) rl.innerHTML = reminders.map((r,i)=>`
+    <div style="background:var(--card2);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:12px;border-left:3px solid ${r.c};border-top:1px solid rgba(45,112,247,0.1);">
+      <div style="font-size:18px;">${r.icon}</div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
+          <span style="font-size:11px;font-weight:600;color:var(--white);">${r.label}</span>
+          <span style="font-size:9px;padding:2px 7px;border-radius:8px;background:${r.c}20;color:${r.c};">${r.type}</span>
+        </div>
+        <div style="font-size:10px;color:var(--gray);">${r.detail}</div>
+        <div style="font-size:9px;color:var(--bluel);margin-top:3px;">Next: ${r.next}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end;">
+        <div onclick="this.textContent=this.textContent==='ON'?'OFF':'ON';this.style.background=this.textContent==='ON'?'var(--teall)':'var(--card)'" style="background:${r.active?'var(--teall)':'var(--card)'};color:${r.active?'var(--navy)':'var(--gray)'};border-radius:10px;padding:3px 10px;font-size:9px;font-weight:700;cursor:pointer;">${r.active?'ON':'OFF'}</div>
+        <div style="font-size:9px;color:var(--gray);cursor:pointer;">✕ Delete</div>
+      </div>
+    </div>`).join('');
+  const nl = document.getElementById('nudge-list');
+  if(nl) nl.innerHTML = nudges.map(n=>`
+    <div style="background:var(--card2);border-radius:8px;padding:12px 14px;border:1px solid rgba(45,112,247,0.12);">
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <div style="width:32px;height:32px;border-radius:8px;background:${n.c}20;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${n.icon}</div>
+        <div style="flex:1;">
+          <div style="font-size:11px;font-weight:600;color:var(--white);margin-bottom:4px;">${n.title}</div>
+          <div style="font-size:10px;color:var(--gray);line-height:1.55;">${n.body}</div>
+          <div style="margin-top:8px;display:flex;gap:6px;">
+            <div style="background:${n.c};color:var(--navy);border-radius:5px;padding:5px 12px;font-size:10px;font-weight:600;cursor:pointer;">${n.cta}</div>
+            <div style="background:transparent;color:var(--gray);border-radius:5px;padding:5px 12px;font-size:10px;cursor:pointer;border:1px solid rgba(45,112,247,0.2);">Later</div>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ── INIT ALL ON LOAD ── */
+window.addEventListener('load',()=>{
+  renderTx(txData);
+  renderVoice();
+  renderCalendar();
+  renderAdvice();
+  renderReminders();
+});
+</script>
+</body>
+</html>
