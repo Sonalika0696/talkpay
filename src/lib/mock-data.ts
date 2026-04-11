@@ -5,10 +5,33 @@ export interface Transaction {
   currency: string;
   status: "completed" | "pending" | "failed";
   timestamp: Date;
+  method: "voice" | "text";
+  voiceCommand?: string;
+}
+
+export interface Beneficiary {
+  id: string;
+  name: string;
+  accountNumber: string;
+  bank: string;
+  avatar: string;
+  isFavorite: boolean;
 }
 
 const names = ["Ahmed", "Sara", "Mohammed", "Fatima", "Omar", "Layla", "Hassan", "Noor"];
+const banks = ["Emirates NBD", "ADCB", "FAB", "Mashreq", "DIB", "RAKBANK", "CBD", "ENBD"];
 const statuses: Transaction["status"][] = ["completed", "completed", "completed", "pending", "completed"];
+const methods: Transaction["method"][] = ["voice", "voice", "text", "voice", "text", "voice", "voice", "text"];
+const voiceCommands = [
+  "Send 200 AED to Ahmed",
+  "Transfer 500 to Sara",
+  undefined,
+  "Pay Fatima 150 dirhams",
+  undefined,
+  "Send 300 AED to Layla",
+  "Transfer 1000 to Hassan",
+  undefined,
+];
 
 function randomId() {
   return "TXN-" + Math.random().toString(36).substring(2, 10).toUpperCase();
@@ -21,6 +44,17 @@ export const mockTransactions: Transaction[] = Array.from({ length: 8 }, (_, i) 
   currency: "AED",
   status: statuses[i % statuses.length],
   timestamp: new Date(Date.now() - i * 3600000 * (Math.random() * 24 + 1)),
+  method: methods[i % methods.length],
+  voiceCommand: voiceCommands[i % voiceCommands.length],
+}));
+
+export const mockBeneficiaries: Beneficiary[] = names.map((name, i) => ({
+  id: `BEN-${i + 1}`,
+  name,
+  accountNumber: `****${Math.floor(1000 + Math.random() * 9000)}`,
+  bank: banks[i % banks.length],
+  avatar: name[0],
+  isFavorite: i < 3,
 }));
 
 export function parseVoiceCommand(input: string) {
