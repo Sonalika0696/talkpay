@@ -42,7 +42,7 @@ export default function Accounts() {
   const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>(initialBeneficiaries);
   const [showAddAccount, setShowAddAccount] = useState(false);
   const [showAddBeneficiary, setShowAddBeneficiary] = useState(false);
-  const [newAccount, setNewAccount] = useState({ bankName: "", accountNumber: "", iban: "", type: "current" as const });
+  const [newAccount, setNewAccount] = useState({ bankName: "", accountNumber: "", iban: "", type: "current" as "current" | "savings" });
   const [newBeneficiary, setNewBeneficiary] = useState({ name: "", bankName: "", accountNumber: "", iban: "" });
 
   const addAccount = () => {
