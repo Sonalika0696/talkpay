@@ -10,21 +10,28 @@ import Pay from "./pages/Pay";
 import History from "./pages/History";
 import VoiceHistory from "./pages/VoiceHistory";
 import Signup from "./pages/Signup";
+import Accounts from "./pages/Accounts";
+import Advisory from "./pages/Advisory";
+import FinancialCalendar from "./pages/FinancialCalendar";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 function AppRoutes() {
   const { isAuthenticated } = useAuth();
+  const authed = (el: React.ReactNode) => isAuthenticated ? el : <Index />;
 
   return (
     <>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/pay" element={isAuthenticated ? <Pay /> : <Index />} />
-        <Route path="/history" element={isAuthenticated ? <History /> : <Index />} />
-        <Route path="/voice-history" element={isAuthenticated ? <VoiceHistory /> : <Index />} />
+        <Route path="/pay" element={authed(<Pay />)} />
+        <Route path="/history" element={authed(<History />)} />
+        <Route path="/voice-history" element={authed(<VoiceHistory />)} />
+        <Route path="/accounts" element={authed(<Accounts />)} />
+        <Route path="/advisory" element={authed(<Advisory />)} />
+        <Route path="/calendar" element={authed(<FinancialCalendar />)} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {isAuthenticated && <BottomNav />}
