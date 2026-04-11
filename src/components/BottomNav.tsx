@@ -1,10 +1,11 @@
-import { Home, Send, Clock } from "lucide-react";
+import { Home, Send, Clock, Mic } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const tabs = [
   { icon: Home, label: "Home", path: "/" },
   { icon: Send, label: "Pay", path: "/pay" },
+  { icon: Mic, label: "Voice", path: "/voice-history" },
   { icon: Clock, label: "History", path: "/history" },
 ];
 
@@ -21,7 +22,7 @@ export function BottomNav() {
             <button
               key={tab.path}
               onClick={() => navigate(tab.path)}
-              className="relative flex flex-col items-center gap-1 px-6 py-2 transition-colors"
+              className="relative flex flex-col items-center gap-1 px-4 py-2 transition-colors"
             >
               {active && (
                 <motion.div
