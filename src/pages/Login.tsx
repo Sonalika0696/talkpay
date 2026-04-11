@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("demo@agent2pay.com");
+  const [email, setEmail] = useState("demo@talkpay.com");
   const [password, setPassword] = useState("demo123");
   const [loading, setLoading] = useState(false);
 

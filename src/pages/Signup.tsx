@@ -63,7 +63,7 @@ export default function Signup() {
 
   const handleComplete = async () => {
     setLoading(true);
-    await login(form.email || "demo@agent2pay.com", "demo123");
+    await login(form.email || "demo@talkpay.com", "demo123");
     setLoading(false);
   };
 
@@ -114,7 +114,7 @@ export default function Signup() {
             <motion.div key="cred" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} className="flex-1 space-y-6">
               <div>
                 <h2 className="text-xl font-bold">Create Account</h2>
-                <p className="text-sm text-muted-foreground mt-1">Set up your Agent2Pay account</p>
+                <p className="text-sm text-muted-foreground mt-1">Set up your TalkPay account</p>
               </div>
 
               <div className="space-y-3">
@@ -178,7 +178,7 @@ export default function Signup() {
                             animate={{ width: `${voiceProgress}%` }}
                           />
                         </div>
-                        <p className="text-[10px] text-muted-foreground">Say: "Agent2Pay, authorize my payment"</p>
+                        <p className="text-[10px] text-muted-foreground">Say: "TalkPay, authorize my payment"</p>
                       </div>
                     )}
 
@@ -320,7 +320,7 @@ export default function Signup() {
               <div>
                 <h2 className="text-xl font-bold">You're all set!</h2>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Your Agent2Pay account is ready to use
+                  Your TalkPay account is ready to use
                 </p>
               </div>
               <div className="glass p-4 w-full space-y-2 text-xs text-left">
