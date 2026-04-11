@@ -33,7 +33,7 @@ export default function Login() {
             <span className="text-xs font-medium text-muted-foreground">AI-Powered Payments</span>
           </div>
           <h1 className="text-3xl font-bold tracking-tight">
-            Agent<span className="text-gradient-primary">2Pay</span>
+            Talk<span className="text-gradient-primary">Pay</span>
           </h1>
           <p className="text-sm text-muted-foreground">Voice-first AI payment platform</p>
         </div>
