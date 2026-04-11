@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import { Loader2, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("demo@agent2pay.com");
   const [password, setPassword] = useState("demo123");
   const [loading, setLoading] = useState(false);
@@ -39,26 +41,23 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="glass p-6 space-y-4">
           <div className="space-y-2">
             <label className="text-xs font-medium text-muted-foreground">Email</label>
-            <Input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="bg-secondary border-glass-border"
-            />
+            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-secondary border-glass-border" />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-medium text-muted-foreground">Password</label>
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="bg-secondary border-glass-border"
-            />
+            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="bg-secondary border-glass-border" />
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Sign In"}
           </Button>
         </form>
+
+        <div className="text-center space-y-2">
+          <p className="text-xs text-muted-foreground">Don't have an account?</p>
+          <Button variant="outline" onClick={() => navigate("/signup")} className="w-full border-primary/30 text-primary hover:bg-primary/10">
+            Create Account
+          </Button>
+        </div>
 
         <p className="text-center text-xs text-muted-foreground">
           Prototype demo — use pre-filled credentials
