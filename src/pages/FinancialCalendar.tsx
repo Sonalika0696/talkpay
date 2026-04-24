@@ -169,7 +169,7 @@ export default function FinancialCalendar() {
                 </div>
                 {(evt.amount || evt.recipient) && (
                   <div className="flex items-center gap-4 text-xs text-muted-foreground pl-12">
-                    {evt.amount && <span className="font-semibold text-foreground">AED {evt.amount.toLocaleString()}</span>}
+                    {evt.amount && <span className="font-semibold text-foreground">INR {evt.amount.toLocaleString()}</span>}
                     {evt.recipient && <span>→ {evt.recipient}</span>}
                   </div>
                 )}
@@ -213,7 +213,7 @@ export default function FinancialCalendar() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
-                  <Input placeholder="Amount (AED)" value={newEvent.amount} onChange={(e) => setNewEvent({ ...newEvent, amount: e.target.value })} className="bg-secondary border-glass-border" />
+                  <Input placeholder="Amount (INR)" value={newEvent.amount} onChange={(e) => setNewEvent({ ...newEvent, amount: e.target.value })} className="bg-secondary border-glass-border" />
                   <Input placeholder="Recipient (optional)" value={newEvent.recipient} onChange={(e) => setNewEvent({ ...newEvent, recipient: e.target.value })} className="bg-secondary border-glass-border" />
                 </div>
 
@@ -273,7 +273,7 @@ export default function FinancialCalendar() {
               </div>
               {evt.amount && (
                 <p className={`text-xs font-semibold ${evt.type === "salary" ? "text-success" : ""}`}>
-                  {evt.type === "salary" ? "+" : "-"}AED {evt.amount.toLocaleString()}
+                  {evt.type === "salary" ? "+" : "-"}INR {evt.amount.toLocaleString()}
                 </p>
               )}
             </motion.div>

@@ -23,12 +23,12 @@ const banks = ["Emirates NBD", "ADCB", "FAB", "Mashreq", "DIB", "RAKBANK", "CBD"
 const statuses: Transaction["status"][] = ["completed", "completed", "completed", "pending", "completed"];
 const methods: Transaction["method"][] = ["voice", "voice", "text", "voice", "text", "voice", "voice", "text"];
 const voiceCommands = [
-  "Send 200 AED to Ahmed",
+  "Send 200 INR to Ahmed",
   "Transfer 500 to Sara",
   undefined,
-  "Pay Fatima 150 dirhams",
+  "Pay Fatima 150 rupees",
   undefined,
-  "Send 300 AED to Layla",
+  "Send 300 INR to Layla",
   "Transfer 1000 to Hassan",
   undefined,
 ];
@@ -41,7 +41,7 @@ export const mockTransactions: Transaction[] = Array.from({ length: 8 }, (_, i) 
   id: randomId(),
   recipient: names[i % names.length],
   amount: Math.floor(Math.random() * 900 + 100),
-  currency: "AED",
+  currency: "INR",
   status: statuses[i % statuses.length],
   timestamp: new Date(Date.now() - i * 3600000 * (Math.random() * 24 + 1)),
   method: methods[i % methods.length],
@@ -71,7 +71,7 @@ export function parseVoiceCommand(input: string) {
   return {
     intent: "transfer" as const,
     amount,
-    currency: "AED",
+    currency: "INR",
     recipient,
   };
 }

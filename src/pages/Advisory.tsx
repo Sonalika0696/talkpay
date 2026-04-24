@@ -29,7 +29,7 @@ function getSuggestions(balance: number): Suggestion[] {
     {
       id: "2",
       title: "Gold Savings Plan",
-      description: "Auto-invest in gold starting AED 50/month. Gold up 12% this year.",
+      description: "Auto-invest in gold starting INR 50/month. Gold up 12% this year.",
       icon: TrendingUp,
       type: "invest",
       action: "Start Plan",
@@ -59,7 +59,7 @@ function getSuggestions(balance: number): Suggestion[] {
     {
       id: "c2",
       title: "Personal Loan — 4.99% APR",
-      description: "Pre-approved for up to AED 100,000. Flexible 12-60 month terms.",
+      description: "Pre-approved for up to INR 100,000. Flexible 12-60 month terms.",
       icon: Percent,
       type: "credit",
       action: "View Offer",
@@ -73,7 +73,7 @@ function getSuggestions(balance: number): Suggestion[] {
     alerts.push({
       id: "a1",
       title: "Low Balance Alert",
-      description: "Your balance is below AED 2,000. Consider reducing non-essential spending or setting up an emergency fund.",
+      description: "Your balance is below INR 2,000. Consider reducing non-essential spending or setting up an emergency fund.",
       icon: AlertTriangle,
       type: "alert",
       action: "View Tips",
@@ -94,7 +94,7 @@ function getSuggestions(balance: number): Suggestion[] {
     alerts.push({
       id: "a3",
       title: "Idle Cash Detected",
-      description: `AED ${(balance - 1000).toLocaleString()} sitting idle. Move to a high-yield savings account earning 4.5% p.a.`,
+      description: `INR ${(balance - 1000).toLocaleString()} sitting idle. Move to a high-yield savings account earning 4.5% p.a.`,
       icon: Lightbulb,
       type: "saving",
       action: "Optimize",
@@ -139,7 +139,7 @@ export default function Advisory() {
       >
         <div>
           <p className="text-[10px] text-muted-foreground">Current Balance</p>
-          <p className="text-xl font-bold text-gradient-primary">AED {BALANCE.toLocaleString()}</p>
+          <p className="text-xl font-bold text-gradient-primary">INR {BALANCE.toLocaleString()}</p>
         </div>
         <div className="flex items-center gap-1 text-success text-xs font-medium">
           <Shield className="h-3 w-3" />
@@ -208,7 +208,7 @@ export default function Advisory() {
           <p className="text-xs font-medium">Monthly Spending Insight</p>
         </div>
         <p className="text-xs text-muted-foreground">
-          You've spent AED 3,200 this month — 15% less than last month. Keep it up! Consider allocating the savings to your investment goals.
+          You've spent INR 3,200 this month — 15% less than last month. Keep it up! Consider allocating the savings to your investment goals.
         </p>
       </motion.div>
     </div>
