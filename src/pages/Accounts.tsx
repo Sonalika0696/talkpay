@@ -25,15 +25,15 @@ interface Beneficiary {
 }
 
 const initialAccounts: BankAccount[] = [
-  { id: "1", bankName: "Emirates NBD", accountNumber: "****4521", iban: "AE070331234567890123456", type: "current", isPrimary: true },
-  { id: "2", bankName: "ADCB", accountNumber: "****7832", iban: "AE210409876543210987654", type: "savings", isPrimary: false },
+  { id: "1", bankName: "HDFC Bank", accountNumber: "****4521", iban: "HDFC0001234", type: "savings", isPrimary: true },
+  { id: "2", bankName: "ICICI Bank", accountNumber: "****7832", iban: "ICIC0005678", type: "current", isPrimary: false },
 ];
 
 const initialBeneficiaries: Beneficiary[] = [
-  { id: "1", name: "Ahmed Al Maktoum", bankName: "Emirates NBD", accountNumber: "****3456", iban: "AE070331234567890123456", isFavorite: true },
-  { id: "2", name: "Sara Hassan", bankName: "FAB", accountNumber: "****9012", iban: "AE350461234567890123456", isFavorite: true },
-  { id: "3", name: "Mohammed Ali", bankName: "Mashreq", accountNumber: "****5678", iban: "AE460331234567890123456", isFavorite: false },
-  { id: "4", name: "Fatima Noor", bankName: "RAKBANK", accountNumber: "****2345", iban: "AE520401234567890123456", isFavorite: false },
+  { id: "1", name: "Aarav Sharma", bankName: "HDFC Bank", accountNumber: "****3456", iban: "HDFC0001234", isFavorite: true },
+  { id: "2", name: "Priya Iyer", bankName: "SBI", accountNumber: "****9012", iban: "SBIN0009012", isFavorite: true },
+  { id: "3", name: "Rahul Verma", bankName: "Axis Bank", accountNumber: "****5678", iban: "UTIB0005678", isFavorite: false },
+  { id: "4", name: "Ananya Nair", bankName: "Kotak Mahindra", accountNumber: "****2345", iban: "KKBK0002345", isFavorite: false },
 ];
 
 export default function Accounts() {

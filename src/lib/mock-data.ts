@@ -18,8 +18,8 @@ export interface Beneficiary {
   isFavorite: boolean;
 }
 
-const names = ["Ahmed", "Sara", "Mohammed", "Fatima", "Omar", "Layla", "Hassan", "Noor"];
-const banks = ["Emirates NBD", "ADCB", "FAB", "Mashreq", "DIB", "RAKBANK", "CBD", "ENBD"];
+const names = ["Aarav", "Priya", "Rahul", "Ananya", "Vikram", "Kavya", "Arjun", "Meera"];
+const banks = ["HDFC Bank", "ICICI Bank", "SBI", "Axis Bank", "Kotak Mahindra", "Yes Bank", "IndusInd", "PNB"];
 const statuses: Transaction["status"][] = ["completed", "completed", "completed", "pending", "completed"];
 const methods: Transaction["method"][] = ["voice", "voice", "text", "voice", "text", "voice", "voice", "text"];
 const voiceCommands = [

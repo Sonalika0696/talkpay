@@ -19,8 +19,8 @@ function getSuggestions(balance: number): Suggestion[] {
   const base: Suggestion[] = [
     {
       id: "1",
-      title: "UAE Sukuk Fund",
-      description: "Sharia-compliant bond fund returning 6.2% annually. Low risk, ideal for conservative investors.",
+      title: "Government of India Bonds",
+      description: "RBI-issued sovereign bonds returning 7.4% annually. Zero risk, ideal for conservative investors.",
       icon: Landmark,
       type: "invest",
       action: "Explore Fund",
@@ -37,8 +37,8 @@ function getSuggestions(balance: number): Suggestion[] {
     },
     {
       id: "3",
-      title: "S&P 500 ETF",
-      description: "Diversify internationally with a top US index ETF. Average 10% annual return.",
+      title: "Nifty 50 Index Fund",
+      description: "Diversified exposure to India's top 50 companies. Average 12% annual return over 10 years.",
       icon: TrendingUp,
       type: "invest",
       action: "Learn More",
