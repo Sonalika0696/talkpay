@@ -130,7 +130,7 @@ export default function Accounts() {
                 </div>
               </div>
               <div className="bg-secondary/50 rounded-lg p-2">
-                <p className="text-[10px] text-muted-foreground">IBAN</p>
+                <p className="text-[10px] text-muted-foreground">IFSC</p>
                 <p className="text-xs font-mono">{acc.iban}</p>
               </div>
             </motion.div>
@@ -152,7 +152,7 @@ export default function Accounts() {
                 </div>
                 <Input placeholder="Bank name" value={newAccount.bankName} onChange={(e) => setNewAccount({ ...newAccount, bankName: e.target.value })} className="bg-secondary border-glass-border" />
                 <Input placeholder="Account number" value={newAccount.accountNumber} onChange={(e) => setNewAccount({ ...newAccount, accountNumber: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="IBAN" value={newAccount.iban} onChange={(e) => setNewAccount({ ...newAccount, iban: e.target.value })} className="bg-secondary border-glass-border" />
+                <Input placeholder="IFSC" value={newAccount.iban} onChange={(e) => setNewAccount({ ...newAccount, iban: e.target.value })} className="bg-secondary border-glass-border" />
                 <div className="flex gap-2">
                   <Button variant={newAccount.type === "current" ? "default" : "outline"} size="sm" onClick={() => setNewAccount({ ...newAccount, type: "current" })} className="flex-1 text-xs">Current</Button>
                   <Button variant={newAccount.type === "savings" ? "default" : "outline"} size="sm" onClick={() => setNewAccount({ ...newAccount, type: "savings" })} className="flex-1 text-xs">Savings</Button>
@@ -241,7 +241,7 @@ export default function Accounts() {
                 <Input placeholder="Full name" value={newBeneficiary.name} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, name: e.target.value })} className="bg-secondary border-glass-border" />
                 <Input placeholder="Bank name" value={newBeneficiary.bankName} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, bankName: e.target.value })} className="bg-secondary border-glass-border" />
                 <Input placeholder="Account number" value={newBeneficiary.accountNumber} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, accountNumber: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="IBAN" value={newBeneficiary.iban} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, iban: e.target.value })} className="bg-secondary border-glass-border" />
+                <Input placeholder="IFSC" value={newBeneficiary.iban} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, iban: e.target.value })} className="bg-secondary border-glass-border" />
                 <Button onClick={addBeneficiary} className="w-full">
                   <Check className="h-4 w-4 mr-1" /> Add Beneficiary
                 </Button>

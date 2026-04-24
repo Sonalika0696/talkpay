@@ -85,14 +85,14 @@ export default function Pay() {
 
   const handleVoicePress = () => {
     setIsRecording(true);
-    const mockCommand = "Send 200 INR to Ahmed";
+    const mockCommand = "Send 200 INR to Aarav";
     simulateTranscription(mockCommand);
   };
 
   const handleVoiceRelease = () => {
     setIsRecording(false);
     setTimeout(() => {
-      processCommand("Send 200 INR to Ahmed");
+      processCommand("Send 200 INR to Aarav");
       setShowTranscription(false);
     }, 500);
   };
@@ -193,7 +193,7 @@ export default function Pay() {
               <Input
                 value={textInput}
                 onChange={(e) => setTextInput(e.target.value)}
-                placeholder='e.g. "Send 200 INR to Ahmed"'
+                placeholder='e.g. "Send 200 INR to Aarav"'
                 className="bg-secondary border-glass-border flex-1"
               />
               <Button type="submit" size="icon">
