@@ -1,19 +1,20 @@
-import { Home, Send, Mic, Clock, Building2, Lightbulb, CalendarDays, Menu, X } from "lucide-react";
+import { Home, Send, Mic, Clock, Users, Lightbulb, CalendarDays, Menu, X, Plus } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const primaryTabs = [
-  { icon: Home, label: "Home", path: "/" },
+  { icon: Home, label: "Wallet", path: "/" },
   { icon: Send, label: "Pay", path: "/pay" },
-  { icon: CalendarDays, label: "Calendar", path: "/calendar" },
-  { icon: Lightbulb, label: "Advise", path: "/advisory" },
+  { icon: Plus, label: "Add Money", path: "/add-money" },
+  { icon: Users, label: "Contacts", path: "/accounts" },
 ];
 
 const moreTabs = [
   { icon: Mic, label: "Voice History", path: "/voice-history" },
-  { icon: Clock, label: "Transactions", path: "/history" },
-  { icon: Building2, label: "Accounts", path: "/accounts" },
+  { icon: Clock, label: "Wallet History", path: "/history" },
+  { icon: CalendarDays, label: "Calendar", path: "/calendar" },
+  { icon: Lightbulb, label: "Advise", path: "/advisory" },
 ];
 
 export function BottomNav() {

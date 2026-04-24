@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { mockTransactions } from "@/lib/mock-data";
+import { useWallet } from "@/lib/wallet-context";
 import { format } from "date-fns";
 import { ArrowLeft, Mic, RotateCcw, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -8,11 +8,13 @@ import { useState } from "react";
 
 export default function VoiceHistory() {
   const navigate = useNavigate();
-  const voiceTransactions = mockTransactions.filter((tx) => tx.method === "voice");
+  const { transactions } = useWallet();
+  const voiceTransactions = transactions.filter((tx) => tx.method === "voice" && tx.kind === "send");
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const handleRepeat = (tx: (typeof voiceTransactions)[0]) => {
-    navigate("/pay", { state: { repeatCommand: tx.voiceCommand || `Send ${tx.amount} ${tx.currency} to ${tx.recipient}` } });
+    const recipient = (tx.counterparty || "").replace("@", "");
+    navigate("/pay", { state: { repeatCommand: tx.voiceCommand || `Send ${tx.amount} INR to ${recipient}` } });
   };
 
   return (
@@ -32,6 +34,11 @@ export default function VoiceHistory() {
       </p>
 
       <div className="space-y-2">
+        {voiceTransactions.length === 0 && (
+          <div className="glass p-8 text-center text-sm text-muted-foreground">
+            No voice transfers yet. Use the mic on the Pay screen to send money.
+          </div>
+        )}
         {voiceTransactions.map((tx, i) => (
           <motion.div
             key={tx.id}
@@ -49,16 +56,14 @@ export default function VoiceHistory() {
                   <Mic className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium">{tx.recipient}</p>
+                  <p className="text-sm font-medium">{tx.counterparty}</p>
                   <p className="text-[10px] text-muted-foreground">{format(tx.timestamp, "MMM d, yyyy · h:mm a")}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <div className="text-right">
-                  <p className="text-sm font-semibold">{tx.amount} {tx.currency}</p>
-                  <span className={`text-[10px] font-medium ${tx.status === "completed" ? "text-success" : tx.status === "pending" ? "text-warning" : "text-destructive"}`}>
-                    {tx.status}
-                  </span>
+                  <p className="text-sm font-semibold">₹{tx.amount.toLocaleString("en-IN")}</p>
+                  <span className="text-[10px] font-medium text-success">{tx.status}</span>
                 </div>
                 <ChevronRight className={`h-4 w-4 text-muted-foreground transition-transform ${expandedId === tx.id ? "rotate-90" : ""}`} />
               </div>
@@ -94,7 +99,7 @@ export default function VoiceHistory() {
                     className="w-full text-xs h-9 gap-2 border-primary/30 text-primary hover:bg-primary/10"
                   >
                     <RotateCcw className="h-3 w-3" />
-                    Repeat Payment
+                    Repeat Transfer
                   </Button>
                 </div>
               </motion.div>

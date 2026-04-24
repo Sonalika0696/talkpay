@@ -1,81 +1,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Plus, Building2, User, CreditCard, Trash2, Star, Check, X } from "lucide-react";
+import { ArrowLeft, Plus, User, Trash2, Star, X, AtSign } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-interface BankAccount {
-  id: string;
-  bankName: string;
-  accountNumber: string;
-  iban: string;
-  type: "savings" | "current";
-  isPrimary: boolean;
-}
-
-interface Beneficiary {
-  id: string;
-  name: string;
-  bankName: string;
-  accountNumber: string;
-  iban: string;
-  isFavorite: boolean;
-}
-
-const initialAccounts: BankAccount[] = [
-  { id: "1", bankName: "HDFC Bank", accountNumber: "****4521", iban: "HDFC0001234", type: "savings", isPrimary: true },
-  { id: "2", bankName: "ICICI Bank", accountNumber: "****7832", iban: "ICIC0005678", type: "current", isPrimary: false },
-];
-
-const initialBeneficiaries: Beneficiary[] = [
-  { id: "1", name: "Aarav Sharma", bankName: "HDFC Bank", accountNumber: "****3456", iban: "HDFC0001234", isFavorite: true },
-  { id: "2", name: "Priya Iyer", bankName: "SBI", accountNumber: "****9012", iban: "SBIN0009012", isFavorite: true },
-  { id: "3", name: "Rahul Verma", bankName: "Axis Bank", accountNumber: "****5678", iban: "UTIB0005678", isFavorite: false },
-  { id: "4", name: "Ananya Nair", bankName: "Kotak Mahindra", accountNumber: "****2345", iban: "KKBK0002345", isFavorite: false },
-];
+import { useWallet } from "@/lib/wallet-context";
 
 export default function Accounts() {
   const navigate = useNavigate();
-  const [accounts, setAccounts] = useState<BankAccount[]>(initialAccounts);
-  const [beneficiaries, setBeneficiaries] = useState<Beneficiary[]>(initialBeneficiaries);
-  const [showAddAccount, setShowAddAccount] = useState(false);
-  const [showAddBeneficiary, setShowAddBeneficiary] = useState(false);
-  const [newAccount, setNewAccount] = useState({ bankName: "", accountNumber: "", iban: "", type: "current" as "current" | "savings" });
-  const [newBeneficiary, setNewBeneficiary] = useState({ name: "", bankName: "", accountNumber: "", iban: "" });
+  const { contacts, addContact, removeContact, toggleFavorite } = useWallet();
+  const [showAdd, setShowAdd] = useState(false);
+  const [form, setForm] = useState({ name: "", handle: "", phone: "" });
 
-  const addAccount = () => {
-    if (!newAccount.bankName || !newAccount.iban) return;
-    setAccounts([...accounts, {
-      id: Date.now().toString(),
-      ...newAccount,
-      accountNumber: "****" + newAccount.accountNumber.slice(-4),
-      isPrimary: false,
-    }]);
-    setNewAccount({ bankName: "", accountNumber: "", iban: "", type: "current" });
-    setShowAddAccount(false);
+  const submit = () => {
+    if (!form.name || !form.handle) return;
+    addContact({ name: form.name, handle: form.handle, phone: form.phone || "+91 00000 00000" });
+    setForm({ name: "", handle: "", phone: "" });
+    setShowAdd(false);
   };
 
-  const addBeneficiary = () => {
-    if (!newBeneficiary.name || !newBeneficiary.iban) return;
-    setBeneficiaries([...beneficiaries, {
-      id: Date.now().toString(),
-      ...newBeneficiary,
-      accountNumber: "****" + newBeneficiary.accountNumber.slice(-4),
-      isFavorite: false,
-    }]);
-    setNewBeneficiary({ name: "", bankName: "", accountNumber: "", iban: "" });
-    setShowAddBeneficiary(false);
-  };
-
-  const toggleFavorite = (id: string) => {
-    setBeneficiaries(beneficiaries.map((b) => b.id === id ? { ...b, isFavorite: !b.isFavorite } : b));
-  };
-
-  const removeAccount = (id: string) => setAccounts(accounts.filter((a) => a.id !== id));
-  const removeBeneficiary = (id: string) => setBeneficiaries(beneficiaries.filter((b) => b.id !== id));
-  const setPrimary = (id: string) => setAccounts(accounts.map((a) => ({ ...a, isPrimary: a.id === id })));
+  const favorites = contacts.filter((c) => c.isFavorite);
 
   return (
     <div className="min-h-screen pb-20 p-4 max-w-lg mx-auto space-y-4">
@@ -83,179 +27,118 @@ export default function Accounts() {
         <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
           <ArrowLeft className="h-4 w-4" />
         </Button>
-        <h2 className="text-lg font-semibold">Accounts & Beneficiaries</h2>
+        <h2 className="text-lg font-semibold flex-1">Wallet Contacts</h2>
+        <Button size="sm" onClick={() => setShowAdd(true)} className="gap-1">
+          <Plus className="h-4 w-4" /> Add
+        </Button>
       </div>
 
-      <Tabs defaultValue="accounts" className="w-full">
-        <TabsList className="w-full bg-secondary">
-          <TabsTrigger value="accounts" className="flex-1 gap-1.5">
-            <Building2 className="h-3.5 w-3.5" /> Bank Accounts
-          </TabsTrigger>
-          <TabsTrigger value="beneficiaries" className="flex-1 gap-1.5">
-            <User className="h-3.5 w-3.5" /> Beneficiaries
-          </TabsTrigger>
-        </TabsList>
-
-        {/* BANK ACCOUNTS TAB */}
-        <TabsContent value="accounts" className="space-y-3 mt-4">
-          {accounts.map((acc, i) => (
-            <motion.div
-              key={acc.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              className={`glass p-4 space-y-2 ${acc.isPrimary ? "glow-primary gradient-border" : ""}`}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Building2 className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">{acc.bankName}</p>
-                    <p className="text-[10px] text-muted-foreground">{acc.type === "current" ? "Current" : "Savings"} · {acc.accountNumber}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1">
-                  {acc.isPrimary ? (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">Primary</span>
-                  ) : (
-                    <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setPrimary(acc.id)}>
-                      <Star className="h-3 w-3 text-muted-foreground" />
-                    </Button>
-                  )}
-                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive" onClick={() => removeAccount(acc.id)}>
-                    <Trash2 className="h-3 w-3" />
-                  </Button>
-                </div>
-              </div>
-              <div className="bg-secondary/50 rounded-lg p-2">
-                <p className="text-[10px] text-muted-foreground">IFSC</p>
-                <p className="text-xs font-mono">{acc.iban}</p>
-              </div>
-            </motion.div>
-          ))}
-
-          <AnimatePresence>
-            {showAddAccount && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="glass p-4 space-y-3"
+      {favorites.length > 0 && (
+        <div>
+          <p className="text-xs text-muted-foreground font-medium mb-2">Favorites</p>
+          <div className="flex gap-3 overflow-x-auto pb-1 -mx-4 px-4">
+            {favorites.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => navigate("/pay", { state: { presetHandle: c.handle } })}
+                className="flex flex-col items-center gap-1 shrink-0"
               >
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium">Add Bank Account</p>
-                  <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setShowAddAccount(false)}>
-                    <X className="h-3 w-3" />
-                  </Button>
+                <div className="h-14 w-14 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold text-lg">
+                  {c.avatar}
                 </div>
-                <Input placeholder="Bank name" value={newAccount.bankName} onChange={(e) => setNewAccount({ ...newAccount, bankName: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="Account number" value={newAccount.accountNumber} onChange={(e) => setNewAccount({ ...newAccount, accountNumber: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="IFSC" value={newAccount.iban} onChange={(e) => setNewAccount({ ...newAccount, iban: e.target.value })} className="bg-secondary border-glass-border" />
-                <div className="flex gap-2">
-                  <Button variant={newAccount.type === "current" ? "default" : "outline"} size="sm" onClick={() => setNewAccount({ ...newAccount, type: "current" })} className="flex-1 text-xs">Current</Button>
-                  <Button variant={newAccount.type === "savings" ? "default" : "outline"} size="sm" onClick={() => setNewAccount({ ...newAccount, type: "savings" })} className="flex-1 text-xs">Savings</Button>
-                </div>
-                <Button onClick={addAccount} className="w-full">
-                  <Check className="h-4 w-4 mr-1" /> Add Account
-                </Button>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <span className="text-[10px] text-muted-foreground">{c.name.split(" ")[0]}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
-          {!showAddAccount && (
-            <Button variant="outline" onClick={() => setShowAddAccount(true)} className="w-full border-dashed border-primary/30 text-primary hover:bg-primary/10">
-              <Plus className="h-4 w-4 mr-2" /> Add Bank Account
-            </Button>
-          )}
-        </TabsContent>
-
-        {/* BENEFICIARIES TAB */}
-        <TabsContent value="beneficiaries" className="space-y-3 mt-4">
-          {/* Favorites section */}
-          {beneficiaries.some((b) => b.isFavorite) && (
-            <div className="space-y-2">
-              <p className="text-xs text-muted-foreground font-medium">Favorites</p>
-              <div className="flex gap-3 overflow-x-auto pb-2">
-                {beneficiaries.filter((b) => b.isFavorite).map((b) => (
-                  <button key={b.id} onClick={() => navigate("/pay")} className="flex flex-col items-center gap-1.5 min-w-[60px]">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary border border-primary/20">
-                      {b.name[0]}
-                    </div>
-                    <span className="text-[10px] text-muted-foreground truncate w-16 text-center">{b.name.split(" ")[0]}</span>
-                  </button>
-                ))}
-              </div>
+      <div className="space-y-2">
+        <p className="text-xs text-muted-foreground font-medium">All Wallet Users</p>
+        {contacts.map((c) => (
+          <motion.div
+            key={c.id}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass p-4 flex items-center gap-3"
+          >
+            <div className="h-11 w-11 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold">
+              {c.avatar}
             </div>
-          )}
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium truncate">{c.name}</p>
+              <p className="text-[11px] text-primary font-mono">{c.handle}</p>
+              <p className="text-[10px] text-muted-foreground">{c.phone}</p>
+            </div>
+            <button onClick={() => toggleFavorite(c.id)} className="p-2">
+              <Star className={`h-4 w-4 ${c.isFavorite ? "fill-warning text-warning" : "text-muted-foreground"}`} />
+            </button>
+            <button onClick={() => removeContact(c.id)} className="p-2 text-muted-foreground hover:text-destructive">
+              <Trash2 className="h-4 w-4" />
+            </button>
+          </motion.div>
+        ))}
+        {contacts.length === 0 && (
+          <div className="glass p-8 text-center text-sm text-muted-foreground">
+            No wallet contacts yet. Add someone to start sending money.
+          </div>
+        )}
+      </div>
 
-          <p className="text-xs text-muted-foreground font-medium">All Beneficiaries</p>
-          {beneficiaries.map((b, i) => (
+      <AnimatePresence>
+        {showAdd && (
+          <>
             <motion.div
-              key={b.id}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowAdd(false)}
+              className="fixed inset-0 z-40 bg-background/70 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              className="glass p-4"
+              exit={{ opacity: 0, y: 30 }}
+              className="fixed bottom-20 left-4 right-4 max-w-lg mx-auto z-50 glass-strong p-5 space-y-3"
             >
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-sm font-semibold text-accent">
-                    {b.name[0]}
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">{b.name}</p>
-                    <p className="text-[10px] text-muted-foreground">{b.bankName} · {b.accountNumber}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toggleFavorite(b.id)}>
-                    <Star className={`h-3 w-3 ${b.isFavorite ? "text-warning fill-warning" : "text-muted-foreground"}`} />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => navigate("/pay")}>
-                    <CreditCard className="h-3 w-3 text-primary" />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive" onClick={() => removeBeneficiary(b.id)}>
-                    <Trash2 className="h-3 w-3" />
-                  </Button>
-                </div>
+                <h3 className="text-sm font-semibold">Add Wallet Contact</h3>
+                <button onClick={() => setShowAdd(false)}><X className="h-4 w-4" /></button>
               </div>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Full name"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="pl-10 bg-secondary border-glass-border"
+                />
+              </div>
+              <div className="relative">
+                <AtSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Wallet ID (e.g. priya)"
+                  value={form.handle}
+                  onChange={(e) => setForm({ ...form, handle: e.target.value.replace(/\s/g, "").toLowerCase() })}
+                  className="pl-10 bg-secondary border-glass-border"
+                />
+              </div>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">+91</span>
+                <Input
+                  type="tel"
+                  inputMode="numeric"
+                  placeholder="10-digit mobile"
+                  value={form.phone.replace("+91 ", "")}
+                  onChange={(e) => setForm({ ...form, phone: "+91 " + e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                  className="pl-10 bg-secondary border-glass-border"
+                />
+              </div>
+              <Button onClick={submit} className="w-full">Add Contact</Button>
             </motion.div>
-          ))}
-
-          <AnimatePresence>
-            {showAddBeneficiary && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="glass p-4 space-y-3"
-              >
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium">Add Beneficiary</p>
-                  <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setShowAddBeneficiary(false)}>
-                    <X className="h-3 w-3" />
-                  </Button>
-                </div>
-                <Input placeholder="Full name" value={newBeneficiary.name} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, name: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="Bank name" value={newBeneficiary.bankName} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, bankName: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="Account number" value={newBeneficiary.accountNumber} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, accountNumber: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="IFSC" value={newBeneficiary.iban} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, iban: e.target.value })} className="bg-secondary border-glass-border" />
-                <Button onClick={addBeneficiary} className="w-full">
-                  <Check className="h-4 w-4 mr-1" /> Add Beneficiary
-                </Button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {!showAddBeneficiary && (
-            <Button variant="outline" onClick={() => setShowAddBeneficiary(true)} className="w-full border-dashed border-primary/30 text-primary hover:bg-primary/10">
-              <Plus className="h-4 w-4 mr-2" /> Add Beneficiary
-            </Button>
-          )}
-        </TabsContent>
-      </Tabs>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
