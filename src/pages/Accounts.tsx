@@ -25,15 +25,15 @@ interface Beneficiary {
 }
 
 const initialAccounts: BankAccount[] = [
-  { id: "1", bankName: "Emirates NBD", accountNumber: "****4521", iban: "AE070331234567890123456", type: "current", isPrimary: true },
-  { id: "2", bankName: "ADCB", accountNumber: "****7832", iban: "AE210409876543210987654", type: "savings", isPrimary: false },
+  { id: "1", bankName: "HDFC Bank", accountNumber: "****4521", iban: "HDFC0001234", type: "savings", isPrimary: true },
+  { id: "2", bankName: "ICICI Bank", accountNumber: "****7832", iban: "ICIC0005678", type: "current", isPrimary: false },
 ];
 
 const initialBeneficiaries: Beneficiary[] = [
-  { id: "1", name: "Ahmed Al Maktoum", bankName: "Emirates NBD", accountNumber: "****3456", iban: "AE070331234567890123456", isFavorite: true },
-  { id: "2", name: "Sara Hassan", bankName: "FAB", accountNumber: "****9012", iban: "AE350461234567890123456", isFavorite: true },
-  { id: "3", name: "Mohammed Ali", bankName: "Mashreq", accountNumber: "****5678", iban: "AE460331234567890123456", isFavorite: false },
-  { id: "4", name: "Fatima Noor", bankName: "RAKBANK", accountNumber: "****2345", iban: "AE520401234567890123456", isFavorite: false },
+  { id: "1", name: "Aarav Sharma", bankName: "HDFC Bank", accountNumber: "****3456", iban: "HDFC0001234", isFavorite: true },
+  { id: "2", name: "Priya Iyer", bankName: "SBI", accountNumber: "****9012", iban: "SBIN0009012", isFavorite: true },
+  { id: "3", name: "Rahul Verma", bankName: "Axis Bank", accountNumber: "****5678", iban: "UTIB0005678", isFavorite: false },
+  { id: "4", name: "Ananya Nair", bankName: "Kotak Mahindra", accountNumber: "****2345", iban: "KKBK0002345", isFavorite: false },
 ];
 
 export default function Accounts() {
@@ -130,7 +130,7 @@ export default function Accounts() {
                 </div>
               </div>
               <div className="bg-secondary/50 rounded-lg p-2">
-                <p className="text-[10px] text-muted-foreground">IBAN</p>
+                <p className="text-[10px] text-muted-foreground">IFSC</p>
                 <p className="text-xs font-mono">{acc.iban}</p>
               </div>
             </motion.div>
@@ -152,7 +152,7 @@ export default function Accounts() {
                 </div>
                 <Input placeholder="Bank name" value={newAccount.bankName} onChange={(e) => setNewAccount({ ...newAccount, bankName: e.target.value })} className="bg-secondary border-glass-border" />
                 <Input placeholder="Account number" value={newAccount.accountNumber} onChange={(e) => setNewAccount({ ...newAccount, accountNumber: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="IBAN" value={newAccount.iban} onChange={(e) => setNewAccount({ ...newAccount, iban: e.target.value })} className="bg-secondary border-glass-border" />
+                <Input placeholder="IFSC" value={newAccount.iban} onChange={(e) => setNewAccount({ ...newAccount, iban: e.target.value })} className="bg-secondary border-glass-border" />
                 <div className="flex gap-2">
                   <Button variant={newAccount.type === "current" ? "default" : "outline"} size="sm" onClick={() => setNewAccount({ ...newAccount, type: "current" })} className="flex-1 text-xs">Current</Button>
                   <Button variant={newAccount.type === "savings" ? "default" : "outline"} size="sm" onClick={() => setNewAccount({ ...newAccount, type: "savings" })} className="flex-1 text-xs">Savings</Button>
@@ -241,7 +241,7 @@ export default function Accounts() {
                 <Input placeholder="Full name" value={newBeneficiary.name} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, name: e.target.value })} className="bg-secondary border-glass-border" />
                 <Input placeholder="Bank name" value={newBeneficiary.bankName} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, bankName: e.target.value })} className="bg-secondary border-glass-border" />
                 <Input placeholder="Account number" value={newBeneficiary.accountNumber} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, accountNumber: e.target.value })} className="bg-secondary border-glass-border" />
-                <Input placeholder="IBAN" value={newBeneficiary.iban} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, iban: e.target.value })} className="bg-secondary border-glass-border" />
+                <Input placeholder="IFSC" value={newBeneficiary.iban} onChange={(e) => setNewBeneficiary({ ...newBeneficiary, iban: e.target.value })} className="bg-secondary border-glass-border" />
                 <Button onClick={addBeneficiary} className="w-full">
                   <Check className="h-4 w-4 mr-1" /> Add Beneficiary
                 </Button>

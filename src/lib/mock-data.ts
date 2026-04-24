@@ -18,18 +18,18 @@ export interface Beneficiary {
   isFavorite: boolean;
 }
 
-const names = ["Ahmed", "Sara", "Mohammed", "Fatima", "Omar", "Layla", "Hassan", "Noor"];
-const banks = ["Emirates NBD", "ADCB", "FAB", "Mashreq", "DIB", "RAKBANK", "CBD", "ENBD"];
+const names = ["Aarav", "Priya", "Rahul", "Ananya", "Vikram", "Kavya", "Arjun", "Meera"];
+const banks = ["HDFC Bank", "ICICI Bank", "SBI", "Axis Bank", "Kotak Mahindra", "Yes Bank", "IndusInd", "PNB"];
 const statuses: Transaction["status"][] = ["completed", "completed", "completed", "pending", "completed"];
 const methods: Transaction["method"][] = ["voice", "voice", "text", "voice", "text", "voice", "voice", "text"];
 const voiceCommands = [
-  "Send 200 INR to Ahmed",
-  "Transfer 500 to Sara",
+  "Send 200 INR to Aarav",
+  "Transfer 500 to Priya",
   undefined,
-  "Pay Fatima 150 rupees",
+  "Pay Ananya 150 rupees",
   undefined,
-  "Send 300 INR to Layla",
-  "Transfer 1000 to Hassan",
+  "Send 300 INR to Kavya",
+  "Transfer 1000 to Arjun",
   undefined,
 ];
 

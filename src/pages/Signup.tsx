@@ -32,10 +32,10 @@ export default function Signup() {
   const currentIdx = STEPS.findIndex((s) => s.key === step);
 
   const mockBeneficiaryList = [
-    { id: "1", name: "Ahmed", phone: "+971 50 123 4567" },
-    { id: "2", name: "Sara", phone: "+971 55 987 6543" },
-    { id: "3", name: "Mohammed", phone: "+971 52 456 7890" },
-    { id: "4", name: "Fatima", phone: "+971 56 321 0987" },
+    { id: "1", name: "Aarav", phone: "+91 98765 43210" },
+    { id: "2", name: "Priya", phone: "+91 99876 54321" },
+    { id: "3", name: "Rahul", phone: "+91 91234 56789" },
+    { id: "4", name: "Ananya", phone: "+91 90123 45678" },
   ];
 
   const handleVoiceEnroll = () => {
@@ -128,7 +128,16 @@ export default function Signup() {
                 </div>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="Phone (+971)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="pl-10 bg-secondary border-glass-border" />
+                  <span className="absolute left-9 top-1/2 -translate-y-1/2 text-sm text-muted-foreground pointer-events-none">+91</span>
+                  <Input
+                    type="tel"
+                    inputMode="numeric"
+                    maxLength={10}
+                    placeholder="10-digit mobile number"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                    className="pl-16 bg-secondary border-glass-border"
+                  />
                 </div>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

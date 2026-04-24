@@ -32,11 +32,11 @@ const typeConfig: Record<EventType, { label: string; color: string; bg: string }
 const now = new Date();
 
 const initialEvents: FinancialEvent[] = [
-  { id: "1", title: "Monthly Salary", date: new Date(now.getFullYear(), now.getMonth(), 28), type: "salary", amount: 15000, isScheduledPayment: false, reminder: true },
-  { id: "2", title: "Car Loan EMI", date: new Date(now.getFullYear(), now.getMonth(), 5), type: "emi", amount: 2500, recipient: "ADCB Auto Finance", isScheduledPayment: true, reminder: true },
-  { id: "3", title: "Home Loan", date: new Date(now.getFullYear(), now.getMonth(), 10), type: "loan", amount: 4800, recipient: "Emirates NBD", isScheduledPayment: true, reminder: true },
-  { id: "4", title: "Credit Card Bill", date: new Date(now.getFullYear(), now.getMonth(), 15), type: "payment", amount: 1200, recipient: "FAB Card", isScheduledPayment: true, reminder: false },
-  { id: "5", title: "Rent Payment", date: addDays(now, 3), type: "payment", amount: 6000, recipient: "Landlord Ahmed", isScheduledPayment: true, reminder: true },
+  { id: "1", title: "Monthly Salary", date: new Date(now.getFullYear(), now.getMonth(), 28), type: "salary", amount: 75000, isScheduledPayment: false, reminder: true },
+  { id: "2", title: "Car Loan EMI", date: new Date(now.getFullYear(), now.getMonth(), 5), type: "emi", amount: 12500, recipient: "HDFC Auto Finance", isScheduledPayment: true, reminder: true },
+  { id: "3", title: "Home Loan EMI", date: new Date(now.getFullYear(), now.getMonth(), 10), type: "loan", amount: 24800, recipient: "SBI Home Loans", isScheduledPayment: true, reminder: true },
+  { id: "4", title: "Credit Card Bill", date: new Date(now.getFullYear(), now.getMonth(), 15), type: "payment", amount: 8200, recipient: "ICICI Card", isScheduledPayment: true, reminder: false },
+  { id: "5", title: "Rent Payment", date: addDays(now, 3), type: "payment", amount: 22000, recipient: "Landlord Sharma", isScheduledPayment: true, reminder: true },
 ];
 
 export default function FinancialCalendar() {
