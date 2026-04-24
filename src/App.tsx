@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/lib/auth-context";
+import { WalletProvider } from "@/lib/wallet-context";
 import { BottomNav } from "@/components/BottomNav";
 import Index from "./pages/Index";
 import Pay from "./pages/Pay";
@@ -13,6 +14,7 @@ import Signup from "./pages/Signup";
 import Accounts from "./pages/Accounts";
 import Advisory from "./pages/Advisory";
 import FinancialCalendar from "./pages/FinancialCalendar";
+import AddMoney from "./pages/AddMoney";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +29,7 @@ function AppRoutes() {
         <Route path="/" element={<Index />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/pay" element={authed(<Pay />)} />
+        <Route path="/add-money" element={authed(<AddMoney />)} />
         <Route path="/history" element={authed(<History />)} />
         <Route path="/voice-history" element={authed(<VoiceHistory />)} />
         <Route path="/accounts" element={authed(<Accounts />)} />
@@ -45,9 +48,11 @@ const App = () => (
       <Toaster />
       <Sonner />
       <AuthProvider>
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
+        <WalletProvider>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </WalletProvider>
       </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
