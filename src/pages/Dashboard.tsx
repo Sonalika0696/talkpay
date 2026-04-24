@@ -33,7 +33,7 @@ export default function Dashboard() {
       >
         <p className="text-xs text-muted-foreground mb-1">Available Balance</p>
         <h1 className="text-4xl font-bold tracking-tight">
-          <span className="text-gradient-primary">AED 5,000</span>
+          <span className="text-gradient-primary">INR 5,000</span>
         </h1>
         <div className="flex items-center gap-1 mt-2 text-success text-xs font-medium">
           <TrendingUp className="h-3 w-3" />
